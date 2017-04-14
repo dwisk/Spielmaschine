@@ -1,0 +1,34 @@
+[
+	{
+		"name": "Spielmaschine",
+		"default": true,
+		"title": "Spielmaschine",
+		"icon": "entypo/adjust",
+		"module": "../games/PixelNode_Game_EffectQueue",
+		"inputs": {
+			"color_left": "inputs.rgb.color_left",
+			"color_right": "inputs.rgb.color_right",
+			"touches": "touch.touches"
+		},
+		"touch_input": false,
+		"color_input": false,
+		"afterEffect": "Title",
+
+		"queue": [
+			{ "effect": "ColouredRain", "duration": 5000 },
+			{ "effect": "Fire", "duration": 5000 },
+			{ "effect": "Rain", "duration": 5000 },
+			{ "effect": "RedBlue", "duration": 5000 },
+			{ "effect": "Glitter", "duration": 5000 }
+		],
+		"queue2": [
+			{ "effect": "Rain", "duration": 10000 },
+			{ "effect": "Wave", "duration": 10000 },
+			{ "effect": "Fire", "duration": 10000 },
+			{ "effect": "Glitter", "duration": 10000 },
+			{ "effect": "Ray", "duration": 10000 },
+			{ "effect": "RedBlue", "duration": 10000 },
+			{ "effect": "Clock", "duration": 10000 }
+		]
+	}
+]

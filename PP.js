@@ -69,7 +69,9 @@ new PixelNode({
 			"./fonts/8bitwonder",
       "./fonts/04b3",
 			"./fonts/commonpixel",
-  		"./fonts/hachicro"
+  		"./fonts/hachicro",
+  		"./fonts/3dventure",
+  		"./fonts/PressStart2P"
 		],
 
 		// GAMES  ----------------------------------------------------------------------------------------------------

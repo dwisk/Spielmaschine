@@ -2,20 +2,20 @@
 	{
 		"name": "buttons",
 		"rings": [
-			{ "px": [[0,9,true]]},
-			{ "px": [[0,8,true]]},
-			{ "px": [[0,7,true]]},
-			{ "px": [[0,6,true]]},
-			{ "px": [[0,5,true]]},
-			{ "px": [[0,4,true]]},
-			{ "px": [[0,3,true]]},
-			{ "px": [[0,2,true]]},
+			{ "px": [[0,0,true]]},
 			{ "px": [[0,1,true]]},
-			{ "px": [[0,0,true]]}
+			{ "px": [[0,2,true]]},
+			{ "px": [[0,3,true]]},
+			{ "px": [[0,4,true]]},
+			{ "px": [[0,5,true]]},
+			{ "px": [[0,6,true]]},
+			{ "px": [[0,7,true]]},
+			{ "px": [[0,8,true]]},
+			{ "px": [[0,9,true]]}
 		],
 		"strips": [
-				{ "px": [ [0,9,true],	[0,8,true],	[0,7,true],	[0,6,true],	[0,5,true],	[0,4,true],	[0,3,true],	[0,2,true],	[0,1,true],	[0,0,true]
-			]}
+				{ "px": [ [0,5,true],	[0,6,true],	[0,7,true],	[0,8,true],	[0,9,true] ]},
+				{ "px": [ [0,4,true],	[0,3,true],	[0,2,true],	[0,1,true],	[0,0,true] ]}
 		]
 	},
 	{

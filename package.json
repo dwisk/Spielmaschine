@@ -4,10 +4,11 @@
   "description": "Pixelnode App",
   "main": " ",
   "dependencies": {
-    "buffertools": "^2.1.4",
-    "heroic-pixel-pusher": "^0.2.4",
-    "pixelnode": "^0.5.0",
-    "pixelnode-driver-pixelpusher": "^0.0.3"
+    "install": "^0.8.8",
+    "npm": "^4.5.0",
+    "pixelnode": "dwisk/PixelNode#develop",
+    "pixelnode-driver-pixelpusher": "dwisk/PixelNode_Driver_PixelPusher#develop",
+    "wpi-gpio": "^1.1.0"
   },
   "devDependencies": {},
   "scripts": {

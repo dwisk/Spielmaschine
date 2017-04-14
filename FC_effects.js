@@ -1,4 +1,4 @@
-[
+module.exports = [
 	{
 		"name": "Clock",
 		"module": "../effects/PixelNode_Effect_TwoClock",
@@ -177,13 +177,61 @@
 		]
 	},
 	{
-		"name": "Title",
-		"module": "./effects/Title.js",
-		"outputs": [
+		name: "Title",
+		module: "./effects/Canvas.js",
+		draw: [
 			{
-				"name": "glow",
-				"targets": [
+	      type: "map",
+	      position: [0, 0],
+	      map: [
+	        [1, 0, 0, 0, 0],
+	        [1, 0, 0, 0, 0]
+	      ],
+	      color: [255, 0, 0]
+	    },
+			{
+	      type: "map",
+	      position: [0, 0],
+	      map: [
+	        [0, 1, 0, 0, 0],
+	        [0, 1, 0, 0, 0]
+	      ],
+	      color: [255, 255, 0]
+	    },
+			{
+	      type: "map",
+	      position: [0, 0],
+	      map: [
+	        [0, 0, 1, 0, 0],
+	        [0, 0, 1, 0, 0]
+	      ],
+	      color: [0, 255, 0]
+	    },
+			{
+	      type: "map",
+	      position: [0, 0],
+	      map: [
+	        [0, 0, 0, 1, 0],
+	        [0, 0, 0, 1, 0]
+	      ],
+	      color: [0, 255, 255]
+	    },
+			{
+	      type: "map",
+	      position: [0, 0],
+	      map: [
+	        [0, 0, 0, 0, 1],
+	        [0, 0, 0, 0, 1]
+	      ],
+	      color: [0, 0, 255]
+	    },
 
+		],
+		outputs: [
+			{
+				name: "canvas",
+				targets: [
+					"buttons.strips"
 				]
 			}
 		]

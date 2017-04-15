@@ -183,6 +183,18 @@ module.exports = [
 		]
 	},
 	{
+		name: "Tischtennis",
+		module: "./effects/Tischtennis.js",
+		outputs: [
+			{
+				name: "table",
+				targets: [
+					"pixelmatrix.rings"
+				]
+			}
+		]
+	},
+	{
 		name: "NoCampCamp",
 		module: "./effects/Canvas.js",
 		draw: [

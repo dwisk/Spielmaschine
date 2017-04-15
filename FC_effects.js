@@ -177,6 +177,18 @@ module.exports = [
 		]
 	},
 	{
+		name: "Tischtennis",
+		module: "./effects/Tischtennis.js",
+		outputs: [
+			{
+				name: "buttons",
+				targets: [
+					"buttons.strips"
+				]
+			}
+		]
+	},
+	{
 		name: "Title",
 		module: "./effects/Canvas.js",
 		draw: [

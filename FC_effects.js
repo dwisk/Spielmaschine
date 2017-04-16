@@ -189,7 +189,7 @@ module.exports = [
 		]
 	},
 	{
-		name: "Title",
+		name: "TitleDwisk",
 		module: "./effects/Canvas.js",
 		draw: [
 			{

@@ -252,11 +252,11 @@ module.exports = [
 			{
 				type: "text",
 				font: "04b3",
-				text: "created by",
+				text: "for you by",
 				position: function() {
 					return [this.bounce("line1x", {
 						min: 3,
-						max: 15,
+						max: 14,
 						speed: 0.25,
 						initialDirection: 1,
 						initialValue: 1
@@ -317,9 +317,9 @@ module.exports = [
 						default:
 							color = [255,255,255];
 							color.push(this.bounce("line2a", {
-								min: 0.5,
+								min: 0.74,
 								max: 1,
-								speed: 0.02,
+								speed: 0.01,
 								initialDirection: 1,
 								initialValue: 1,
 								round: false
@@ -334,14 +334,14 @@ module.exports = [
 			{
 				type: "text",
 				font: "04b3",
-				text: "in Munich",
+				text: "Have fun!",
 				position: function() {
 					return [this.bounce("line3x", {
 						min: 3,
-						max: 23,
+						max: 21,
 						speed: 0.25,
 						initialDirection: -1,
-						initialValue: 23
+						initialValue: 21
 					}), 24];
 				},
 				color: function() {
@@ -383,7 +383,7 @@ module.exports = [
 		]
 	},
 	{
-		name: "Title", // BBB
+		name: "TitleBBB", // BBB
 		module: "./effects/Canvas.js",
 		preDraw: function() {
 		},

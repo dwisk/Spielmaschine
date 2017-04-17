@@ -208,7 +208,7 @@ module.exports = [
 	      type: "map",
 	      position: [0, 0],
 	      map: [
-	        [0, 0, 0, 0, 0],
+	        [0, 0, 1, 0, 0],
 	        [0, 0, 1, 0, 0]
 	      ],
 	      color: [255, 0, 0]
@@ -217,7 +217,7 @@ module.exports = [
 	      type: "map",
 	      position: [0, 0],
 	      map: [
-	        [1, 1, 1, 1, 1],
+	        [1, 1, 0, 1, 1],
 	        [1, 1, 0, 1, 1]
 	      ],
 	      color: [0, 0, 0]

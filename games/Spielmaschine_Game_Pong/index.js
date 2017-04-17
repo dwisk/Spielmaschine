@@ -86,7 +86,7 @@ Spielmaschine_Game_Pong.prototype.reset = function() {
       down: ["inputs","buttons","btn_10"]
     }}),
     ball: new PongBall({
-      speedX: 0.5 - Math.random(1) > 0 ? 1 : -1
+      speedX: 0.5 - Math.random(1) > 0 ? PongBall.defaultSpeed : PongBall.defaultSpeed * -1
     }),
     stage: "start"
   });
@@ -101,7 +101,8 @@ Spielmaschine_Game_Pong.prototype.draw = function() {
     case "start":
       var anybutton = false;
       if (global.config.inputMode == "server" && self.inited) {
-        anybutton = global.pixelNode.data.fastGet(["inputs","buttons","btn_8"]);
+        anybutton = (global.pixelNode.data.fastGet(["inputs","buttons","btn_3"])
+                       && global.pixelNode.data.fastGet(["inputs","buttons","btn_8"]));
       }
       self.stageScreen("Color", "PongStart", anybutton ? -1 : 0 , "game", false);
       if (global.config.inputMode == "server" && self.inited) {
@@ -150,11 +151,15 @@ Spielmaschine_Game_Pong.prototype.stageGame = function() {
     // move the ball
     ball.move();
 
-    // bounce player1
-    var point1 = ball.bouncePlayer(player1, player2);
-
-    // bounce player2
-    var point2 = ball.bouncePlayer(player2, player1);
+    var point1 = 0;
+    var point2 = 0;
+    if (ball.speedX < 0) {
+      // bounce player1
+      point1 = ball.bouncePlayer(player1, player2);
+    } else {
+      // bounce player2
+      point2 = ball.bouncePlayer(player2, player1);
+    }
 
     // move players
     player1.checkMove();

@@ -99,7 +99,12 @@ PixelNode_Effect_Pong.prototype.drawTarget = function(target, output) {
       canvas.rectangle(1,player1.pos,1,player1.width, player1color);
       canvas.rectangle(62,player2.pos,1,player2.width, player2color);
 
-      canvas.rectangle(Math.round(ball.posX)-1, Math.round(ball.posY)-1, 2, 2, ball.power ? [255,0,0]:[255,255,255]);
+      ballcolor = [255,255,255];
+      if (ball.power) ballcolor = [255,0,0];
+      if (ball.spin) ballcolor = [0,0,255];
+      canvas.rectangle(Math.round(ball.posX)-1, Math.round(ball.posY)-1, 3, 3, ballcolor.concat(0.6));
+      canvas.rectangle(Math.round(ball.posX), Math.round(ball.posY)-1, 1, 3, ballcolor);
+      canvas.rectangle(Math.round(ball.posX)-1, Math.round(ball.posY), 3, 1, ballcolor);
 
 
     }

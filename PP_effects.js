@@ -183,6 +183,18 @@ module.exports = [
 		]
 	},
 	{
+		name: "Maze",
+		module: "./effects/Maze.js",
+		outputs: [
+			{
+				name: "table",
+				targets: [
+					"pixelmatrix.rings"
+				]
+			}
+		]
+	},
+	{
 		name: "Tischtennis",
 		module: "./effects/Tischtennis.js",
 		outputs: [

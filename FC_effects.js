@@ -177,6 +177,18 @@ module.exports = [
 		]
 	},
 	{
+		name: "Maze",
+		module: "./effects/Maze.js",
+		outputs: [
+			{
+				name: "buttons",
+				targets: [
+					"buttons.strips"
+				]
+			}
+		]
+	},
+	{
 		name: "Tischtennis",
 		module: "./effects/Tischtennis.js",
 		outputs: [

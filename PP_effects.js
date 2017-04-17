@@ -518,11 +518,11 @@ module.exports = [
 				text: "PLAY!",
 				position: function() {
 					return [this.bounce("line1x", {
-						min: 0,
-						max: 44,
+						min: 9,
+						max: 35,
 						speed: 0.25,
 						initialDirection: 1,
-						initialValue: 0
+						initialValue: 9
 					}), 25];
 				},
 				color: [255,0,0]
@@ -636,8 +636,8 @@ module.exports = [
 			{
 				type: "text",
 				font: "8bitwonder",
-				text: "dwisk",
-				position: [3, 11],
+				text: "Mephy",
+				position: [0, 11],
 				color: function() {
 					pushed = global.pixelNode.data.fastGet(["inputs","buttons"]);
 

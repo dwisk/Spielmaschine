@@ -48,10 +48,10 @@ PongBall.prototype.reset = function(direction) {
 
   switch (direction) {
     case "left":
-      this.speedX = 0.5;
+      this.speedX = 1;
       break;
     case "right":
-      this.speedX = -0.5;
+      this.speedX = -1;
       break;
     case "none":
       this.speedX = 0;
@@ -95,6 +95,8 @@ PongBall.prototype.bouncePlayer = function(player, opponent) {
     opponent.powers++;
     opponent.shields++;
 
+    return 2;
+
   // check if player bounced the ball
   } else if (
       ((player.side == "left" && Math.round(this.posX) <= 3 ) || (player.side == "right" && Math.round(this.posX) >= 61 ))
@@ -118,5 +120,9 @@ PongBall.prototype.bouncePlayer = function(player, opponent) {
 
     // if player has power, give ball power
     if (player.power) this.power = true;
+
+    return 1;
   }
+
+  return 0;
 }

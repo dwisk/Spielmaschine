@@ -142,7 +142,18 @@ PixelNode_Effect_Canvas.prototype.drawTarget = function(target, output) {
         var font = global.pixelNode.fontManager.getFont(element.font);
         // draw whin initialized
         if (font && font.initialized) {
-          canvas.drawMap(font.mapWord(element.text), self.getValue(element.position)[0], self.getValue(element.position)[1], self.getValue(element.color));
+          var map = font.mapWord(self.getValue(element.text));
+          var alignOffset = 0;
+          switch(self.getValue(element.align)) {
+            case "right":
+              alignOffset = map.length-1;
+              break;
+            case "center":
+              alignOffset = Math.floor((map.length-1)/2);
+              break;
+
+          }
+          canvas.drawMap(map, self.getValue(element.position)[0] - alignOffset, self.getValue(element.position)[1], self.getValue(element.color));
         }
         break;
     }

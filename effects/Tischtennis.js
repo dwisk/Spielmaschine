@@ -61,6 +61,7 @@ PixelNode_Effect_Tischtennis.prototype.drawTarget = function(target, output) {
   if (player1 && player2 && ball) {
 
     canvas = new PixelNode_Canvas(target);
+    canvas.fill([0,0,0]);
     if (output == "buttons") {
       canvas.drawMap([
         [0, 0, 1, 0, 0],
@@ -80,12 +81,12 @@ PixelNode_Effect_Tischtennis.prototype.drawTarget = function(target, output) {
 
       var font = global.pixelNode.fontManager.getFont('8bitwonder');
       if (font && font.initialized) {
-        canvas.drawMap(font.mapWord(player1.score.toString()), 12,11, [255,255,255, 0.6]);
+        canvas.drawMap(font.mapWord(player1.score.toString()), 12,11, [255,255,255, 0.4]);
 
-        canvas.drawMap(font.mapWord(player2.score.toString()), 42,11, [255,255,255, 0.6]);
+        canvas.drawMap(font.mapWord(player2.score.toString()), 42,11, [255,255,255, 0.4]);
       }
 
-      canvas.rectangle(31,0, 2, 32, [0,0,0,0.3]);
+      canvas.rectangle(31,0, 2, 32, [255,255,255,0.3]);
 
       var player1color =  [255,255,255];
       var player2color =  [255,255,255];

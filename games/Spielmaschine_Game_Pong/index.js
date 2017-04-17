@@ -41,12 +41,7 @@ module.exports = Spielmaschine_Game_Pong;
 /* Variables
  * ==================================================================================================================== */
 
- Spielmaschine_Game_Pong.prototype.default_options = {
- 	"targets": [
- 		"domePixels.strips"
- 	]
- }
-
+Spielmaschine_Game_Pong.prototype.default_options = { }
 Spielmaschine_Game_Pong.prototype.inited = false;
 Spielmaschine_Game_Pong.prototype.backgroundEffect = null;
 Spielmaschine_Game_Pong.prototype.foregroundEffect = null;
@@ -64,11 +59,6 @@ Spielmaschine_Game_Pong.prototype.init = function() {
 	self.foregroundEffect = global.pixelNode.gameManager.getEffectByName(self.options.foregroundEffect);
 
 	if (global.config.inputMode == "server") {
-
-    global.pixelNode.data.set(["games","Spielmaschine_Game_Pong"], {
-
-      ball: Object.assign({}, self.ballPrototype)
-    });
     self.inited = true
 	}
 }
@@ -96,17 +86,53 @@ Spielmaschine_Game_Pong.prototype.reset = function() {
       down: ["inputs","buttons","btn_10"]
     }}),
     ball: new PongBall({
-      speedX: 0.5 - Math.random(1) > 0 ? 0.5 : -0.5
-    })
+      speedX: 0.5 - Math.random(1) > 0 ? 1 : -1
+    }),
+    stage: "start"
   });
 }
 
 // draw effect – override this
 Spielmaschine_Game_Pong.prototype.draw = function() {
 	var self = this;
+  var stage = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Pong","stage"]);
+
+  switch(stage) {
+    case "start":
+      var anybutton = false;
+      if (global.config.inputMode == "server" && self.inited) {
+        anybutton = global.pixelNode.data.fastGet(["inputs","buttons","btn_8"]);
+      }
+      self.stageScreen("Color", "TischtennisStart", anybutton ? -1 : 0 , "game", false);
+      if (global.config.inputMode == "server" && self.inited) {
+        global.pixelNode.gameManager.getEffectByName("TischtennisStart").draw();
+      }
+      break;
+    case "game":
+      self.stageGame();
+      break;
+    case "point":
+      self.stageScreen("Glitter", "GamePoint", 50, "game", false);
+      break;
+    case "won":
+      self.stageScreen("ColouredRain", "GameWinner", 250, "start", true);
+      break;
+
+  }
+
+
+}
+
+/* Game Stages
+ * ==================================================================================================================== */
+
+
+// stage Game
+Spielmaschine_Game_Pong.prototype.stageGame = function() {
+	var self = this;
 
   // draw background
-	self.backgroundEffect.draw();
+  //self.backgroundEffect.draw();
 
   // get data
   var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Pong","player1"]);
@@ -125,24 +151,71 @@ Spielmaschine_Game_Pong.prototype.draw = function() {
     ball.move();
 
     // bounce player1
-    ball.bouncePlayer(player1, player2);
+    var point1 = ball.bouncePlayer(player1, player2);
 
     // bounce player2
-    ball.bouncePlayer(player2, player1);
+    var point2 = ball.bouncePlayer(player2, player1);
 
     // move players
     player1.checkMove();
     player2.checkMove();
 
+    var stage = "game";
+    var stageOptions = {};
+    if (point1 + point2 >= 2) {
+      console.log("Spielstand", player1.score+":"+player2.score);
+      if (player1.score < 10 && player2.score < 10) {
+        stage = "point";
+      } else {
+        stage = "won";
+      }
+      stageOptions = {
+        player: point1 > point2 ? "player2" : "player1",
+        score: {
+          player1: player1.score,
+          player2: player2.score
+        }
+      }
+    }
 
     global.pixelNode.data.set(["games","Spielmaschine_Game_Pong"], {
       "player1": player1,
       "player2": player2,
-      "ball": ball
+      "ball": ball,
+      "stage": stage,
+      "stageOptions": stageOptions
     }, true);
   }
 
   // draw foreground
   self.foregroundEffect.draw();
+
+}
+
+// stage Point
+Spielmaschine_Game_Pong.prototype.stagePointTimer = 0;
+Spielmaschine_Game_Pong.prototype.stageScreen = function(backgroundFX, foregroundFX, timerMax, nextGame, resetGame) {
+  global.pixelNode.gameManager.getEffectByName(backgroundFX).draw();
+
+  if (global.config.inputMode == "server" && this.inited) {
+    this.stagePointTimer++;
+
+    if ((timerMax > 0 && this.stagePointTimer > timerMax) || timerMax == -1) {
+      this.stagePointTimer = 0;
+      global.pixelNode.data.set(["games","Spielmaschine_Game_Pong", "stage"], nextGame);
+      global.pixelNode.data.set(["games","Spielmaschine_Game_Pong", "stageOptions"], {});
+      if (resetGame) this.reset();
+    }
+  } else {
+
+    var stageOptions = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Pong","stageOptions"]);
+    var effect = global.pixelNode.gameManager.getEffectByName(foregroundFX);
+    if (stageOptions) {
+      effect.variables.player = stageOptions.player;
+      effect.variables.score1 = stageOptions.score.player1;
+      effect.variables.score2 = stageOptions.score.player2;
+    }
+    effect.draw();
+  }
 
 }

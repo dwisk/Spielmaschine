@@ -195,8 +195,8 @@ module.exports = [
 		]
 	},
 	{
-		name: "Tischtennis",
-		module: "./effects/Tischtennis.js",
+		name: "Pong",
+		module: "./effects/Pong.js",
 		outputs: [
 			{
 				name: "table",
@@ -415,7 +415,7 @@ module.exports = [
 		]
 	},
 	{
-		name: "TischtennisStart",
+		name: "PongStart",
 		module: "./effects/Canvas.js",
 		draw: [
 			{

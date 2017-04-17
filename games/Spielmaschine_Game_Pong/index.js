@@ -103,9 +103,9 @@ Spielmaschine_Game_Pong.prototype.draw = function() {
       if (global.config.inputMode == "server" && self.inited) {
         anybutton = global.pixelNode.data.fastGet(["inputs","buttons","btn_8"]);
       }
-      self.stageScreen("Color", "TischtennisStart", anybutton ? -1 : 0 , "game", false);
+      self.stageScreen("Color", "PongStart", anybutton ? -1 : 0 , "game", false);
       if (global.config.inputMode == "server" && self.inited) {
-        global.pixelNode.gameManager.getEffectByName("TischtennisStart").draw();
+        global.pixelNode.gameManager.getEffectByName("PongStart").draw();
       }
       break;
     case "game":

@@ -1,5 +1,5 @@
 /**
- * PixelNode_Effect_Tischtennis
+ * PixelNode_Effect_Pong
  *
  * --------------------------------------------------------------------------------------------------------------------
  *
@@ -20,18 +20,18 @@ var PixelNode_Canvas = require('../node_modules/pixelnode/lib/PixelNode_Canvas.j
 PixelNode_Effect = require('../node_modules/pixelnode/lib/PixelNode_Effect.js');
 
 // define the Student class
-function PixelNode_Effect_Tischtennis(options,pixelData) {
+function PixelNode_Effect_Pong(options,pixelData) {
   var self = this;
-  PixelNode_Effect_Tischtennis.super_.call(self, options, pixelData);
-  self.className = "PixelNode_Effect_Tischtennis";
+  PixelNode_Effect_Pong.super_.call(self, options, pixelData);
+  self.className = "PixelNode_Effect_Pong";
   self.public_dir = __dirname;
 }
 
 // class inheritance
-util.inherits(PixelNode_Effect_Tischtennis, PixelNode_Effect);
+util.inherits(PixelNode_Effect_Pong, PixelNode_Effect);
 
 // module export
-module.exports = PixelNode_Effect_Tischtennis;
+module.exports = PixelNode_Effect_Pong;
 
 
 /* Variables
@@ -44,14 +44,14 @@ module.exports = PixelNode_Effect_Tischtennis;
  * ==================================================================================================================== */
 
 // init effect – override
-PixelNode_Effect_Tischtennis.prototype.init = function() {
+PixelNode_Effect_Pong.prototype.init = function() {
 	console.log("Init Effect Off".grey);
 }
 
-PixelNode_Effect_Tischtennis.prototype.pos = 4;
-PixelNode_Effect_Tischtennis.prototype.dir = 1;
+PixelNode_Effect_Pong.prototype.pos = 4;
+PixelNode_Effect_Pong.prototype.dir = 1;
 // draw effect on target
-PixelNode_Effect_Tischtennis.prototype.drawTarget = function(target, output) {
+PixelNode_Effect_Pong.prototype.drawTarget = function(target, output) {
   var self = this;
 
   var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Pong","player1"]);

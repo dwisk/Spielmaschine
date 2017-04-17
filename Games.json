@@ -4,7 +4,7 @@
 		"title": "BeFree",
 		"module": "./games/Spielmaschine_Game_Maze",
 		"mapEffect": "Maze",
-		"foregroundEffect": "Tischtennis",
+		"foregroundEffect": "Pong",
 		"inputs": {
 			"color_left": "inputs.rgb.color_left",
 			"color_right": "inputs.rgb.color_right",
@@ -41,7 +41,7 @@
 		"title": "Tischtennis",
 		"module": "./games/Spielmaschine_Game_Pong",
 		"backgroundEffect": "RedBlue",
-		"foregroundEffect": "Tischtennis",
+		"foregroundEffect": "Pong",
 		"inputs": {
 			"color_left": "inputs.rgb.color_left",
 			"color_right": "inputs.rgb.color_right",

@@ -111,9 +111,15 @@ Spielmaschine_Game_Pong.prototype.draw = function() {
       break;
     case "game":
       self.stageGame();
+      self.soundStarted = false;
       break;
     case "point":
       self.stageScreen("Glitter", "GamePoint", 50, "game", false);
+      if (!self.soundStarted) {
+        global.pixelNode.sound.play("point.mp3");
+        self.soundStarted = true;
+      }
+
       break;
     case "won":
       self.stageScreen("ColouredRain", "GameWinner", 250, "start", true);
@@ -207,6 +213,8 @@ Spielmaschine_Game_Pong.prototype.stageScreen = function(backgroundFX, foregroun
 
     if ((timerMax > 0 && this.stagePointTimer > timerMax) || timerMax == -1) {
       this.stagePointTimer = 0;
+      global.pixelNode.sound.stop();
+
       global.pixelNode.data.set(["games","Spielmaschine_Game_Pong", "stage"], nextGame);
       global.pixelNode.data.set(["games","Spielmaschine_Game_Pong", "stageOptions"], {});
       if (resetGame) this.reset();

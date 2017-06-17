@@ -17,6 +17,7 @@ var _ = require("underscore");
 var Runner = require("./Runner");
 var mazeGen = require('@sbj42/maze-generator');
 
+
 /* Class Constructor
  * ==================================================================================================================== */
 
@@ -43,6 +44,7 @@ module.exports = Spielmaschine_Game_Maze;
 
 Spielmaschine_Game_Maze.prototype.default_options = { }
 Spielmaschine_Game_Maze.prototype.inited = false;
+Spielmaschine_Game_Maze.prototype.soundStarted = false;
 Spielmaschine_Game_Maze.prototype.maze = null;
 Spielmaschine_Game_Maze.prototype.map = [];
 Spielmaschine_Game_Maze.prototype.mazeOffsetX = 0;
@@ -199,6 +201,8 @@ Spielmaschine_Game_Maze.prototype.draw = function() {
       }
       break;
     case "game":
+      self.soundStarted = false;
+
       self.stageGame();
       break;
     case "won":
@@ -206,6 +210,13 @@ Spielmaschine_Game_Maze.prototype.draw = function() {
       break;
     case "point":
       self.stageScreen("Glitter", "GamePoint", 50, "game", false, true);
+
+      if (!self.soundStarted) {
+        global.pixelNode.sound.play("point.mp3");
+        self.soundStarted = true;
+      }
+
+
       break;
     case "hug":
       self.stageScreen("Fire", "GameHug", 50, "game", false);
@@ -285,6 +296,9 @@ Spielmaschine_Game_Maze.prototype.stageScreen = function(backgroundFX, foregroun
 
     if ((timerMax > 0 && this.stagePointTimer > timerMax) || timerMax == -1) {
       this.stagePointTimer = 0;
+
+      global.pixelNode.sound.stop();
+
       global.pixelNode.data.set(["games","Spielmaschine_Game_Maze", "stage"], nextGame);
       global.pixelNode.data.set(["games","Spielmaschine_Game_Maze", "stageOptions"], {});
       if (resetGame) this.reset(true);

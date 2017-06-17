@@ -83,6 +83,7 @@ PongBall.prototype.move = function() {
 
   // bounce walls
   if (this.posY <= 0 || this.posY >= 30) {
+    global.pixelNode.sound.play("pong.mp3");
     this.speedY = this.speedY * -1;
   }
 }
@@ -111,6 +112,8 @@ PongBall.prototype.bouncePlayer = function(player, opponent) {
   } else if (
       ((player.side == "left" && Math.round(this.bounceX) <= 3 ) || (player.side == "right" && Math.round(this.bounceX) >= 60 ))
       && this.bounceY >= player.pos && this.bounceY <= player.pos + player.width) {
+
+    global.pixelNode.sound.play("pong.mp3");
 
     // reverse speedX
     this.speedX = this.speedX * -1;

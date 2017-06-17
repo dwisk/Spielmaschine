@@ -211,6 +211,13 @@ module.exports = [
 		module: "./effects/Canvas.js",
 		draw: [
 			{
+				type: "rectangle",
+				position: [1,1],
+				width: 62,
+				height: 30,
+				color: [0,0,0,0.3]
+			},
+			{
 				type: "text",
 				font: "8bitwonder",
 				text: "POINT",

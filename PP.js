@@ -17,7 +17,7 @@ var PixelNode = require('pixelnode');
 /* Config
  * -------------------------------------------------------------------------------------------------------------------- */
 
-new PixelNode({
+pixelnode = new PixelNode({
 	config: {
 		"title": "Spielmaschine Pixelpusher-Display",
 		"inputMode": "client",
@@ -34,14 +34,14 @@ new PixelNode({
 			{
 				"module": "pixelnode-driver-pixelpusher",
 				"delay": 25,
-				"dimmer": 1
+				"dimmer": 0.75
 			}
 		],
 
 
 		// EFFECTS ----------------------------------------------------------------------------------------------------
 
-		"effects": PixelNode.requireFile("PP_effects.js"),
+		"effects": PixelNode.requireFile("./PP_effects"),
 		"after_effects": [
 		],
 
@@ -81,4 +81,19 @@ new PixelNode({
 	},
 
 	mapping: "PP_mapping.json"
+});
+
+
+// override effects
+pixelnode.gameManager.on("drawGame_after", function() {
+
+	pushed = global.pixelNode.data.fastGet(["inputs","buttons"]);
+	if (pushed && pushed.btn_8 && pixelnode.pixelDrivers[0].options.dimmer > 0) {
+		pixelnode.pixelDrivers[0].options.dimmer -= 0.01;
+		console.log(pixelnode.pixelDrivers[0].options.dimmer);
+	} else if (pushed && pushed.btn_3 && pixelnode.pixelDrivers[0].options.dimmer < 1) {
+		pixelnode.pixelDrivers[0].options.dimmer += 0.01;
+		console.log(pixelnode.pixelDrivers[0].options.dimmer);
+	}
+
 });

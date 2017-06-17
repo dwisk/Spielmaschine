@@ -9,7 +9,7 @@
 			"color_right": "inputs.rgb.color_right",
 			"touches": "touch.touches"
 		},
-		"afterEffect": "TitleDwisk",
+		"afterEffect": "TitleSpielmaschine",
 
 		"queue": [
 			{ "effect": "ColouredRain", "duration": 10000 },

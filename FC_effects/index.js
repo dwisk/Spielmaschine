@@ -10,15 +10,11 @@ var PixelNode = require('pixelnode');
 module.exports = [].concat(
 	require("./basics.json"),
 	[
-		require("./TitleBBB.js"),
 		require("./TitleDwisk.js"),
-		require("./TitleNoCampCamp.js"),
-		require("./TitleSpielmaschine.js")
 	],
-	require("./games.js"),
 	require("./GameMaze.js"),
 	require("./GamePong.js"),
-	require("../games/Spielmaschine_Game_Wheels/PP_effects"),
+	require("../games/Spielmaschine_Game_Wheels/FC_effects"),
 	[
 
 		{

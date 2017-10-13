@@ -121,7 +121,7 @@ PixelNode_Effect_Canvas.prototype.drawTarget = function(target, output) {
         break;
 
       case "rectangle":
-        canvas.rectangle(element.position[0], element.position[1], element.width, element.height, element.color);
+        canvas.rectangle(element.position[0], element.position[1], element.width, element.height, self.getValue(element.color));
         break;
 
       case "oval":

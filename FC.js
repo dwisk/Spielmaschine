@@ -53,7 +53,7 @@ new PixelNode({
 
 		// EFFECTS ----------------------------------------------------------------------------------------------------
 
-		"effects": PixelNode.requireFile("FC_effects.js"),
+		"effects": PixelNode.requireFile("./FC_effects"),
 		"after_effects": [
 		],
 

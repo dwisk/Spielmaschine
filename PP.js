@@ -87,13 +87,13 @@ pixelnode = new PixelNode({
 // override effects
 pixelnode.gameManager.on("drawGame_after", function() {
 
-	pushed = global.pixelNode.data.fastGet(["inputs","buttons"]);
-	if (pushed && pushed.btn_8 && pixelnode.pixelDrivers[0].options.dimmer > 0) {
-		pixelnode.pixelDrivers[0].options.dimmer -= 0.01;
-		console.log(pixelnode.pixelDrivers[0].options.dimmer);
-	} else if (pushed && pushed.btn_3 && pixelnode.pixelDrivers[0].options.dimmer < 1) {
-		pixelnode.pixelDrivers[0].options.dimmer += 0.01;
-		console.log(pixelnode.pixelDrivers[0].options.dimmer);
+	if (pixelNode.gameManager.game.options.allowBrightness || false) {
+		pushed = global.pixelNode.data.fastGet(["inputs","buttons"]);
+		if (pushed && pushed.btn_8 && pixelnode.pixelDrivers[0].options.dimmer > 0) {
+			pixelnode.pixelDrivers[0].options.dimmer -= 0.01;
+		} else if (pushed && pushed.btn_3 && pixelnode.pixelDrivers[0].options.dimmer < 1) {
+			pixelnode.pixelDrivers[0].options.dimmer += 0.01;
+		}
 	}
 
 });

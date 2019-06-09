@@ -33,6 +33,11 @@ new PixelNode({
 			"idletime": 20 * 60
 		},
 
+		"sound": {
+			enabled: false,
+			dir: "sounds"
+		},
+
 		// DRIVERS ----------------------------------------------------------------------------------------------------
 
 		"pixelDrivers": [
@@ -48,7 +53,7 @@ new PixelNode({
 
 		// EFFECTS ----------------------------------------------------------------------------------------------------
 
-		"effects": PixelNode.requireFile("FC_effects.js"),
+		"effects": PixelNode.requireFile("./FC_effects"),
 		"after_effects": [
 		],
 

@@ -1,5 +1,5 @@
 /**
- * PixelNode_Effect_Tischtennis
+ * PixelNode_Effect_Pong
  *
  * --------------------------------------------------------------------------------------------------------------------
  *
@@ -20,38 +20,46 @@ var PixelNode_Canvas = require('../node_modules/pixelnode/lib/PixelNode_Canvas.j
 PixelNode_Effect = require('../node_modules/pixelnode/lib/PixelNode_Effect.js');
 
 // define the Student class
-function PixelNode_Effect_Tischtennis(options,pixelData) {
+function PixelNode_Effect_Pong(options,pixelData) {
   var self = this;
-  PixelNode_Effect_Tischtennis.super_.call(self, options, pixelData);
-  self.className = "PixelNode_Effect_Tischtennis";
+  PixelNode_Effect_Pong.super_.call(self, options, pixelData);
+  self.className = "PixelNode_Effect_Pong";
   self.public_dir = __dirname;
 }
 
 // class inheritance
-util.inherits(PixelNode_Effect_Tischtennis, PixelNode_Effect);
+util.inherits(PixelNode_Effect_Pong, PixelNode_Effect);
 
 // module export
-module.exports = PixelNode_Effect_Tischtennis;
+module.exports = PixelNode_Effect_Pong;
 
 
 /* Variables
  * ==================================================================================================================== */
 
 
+  PixelNode_Effect_Pong.prototype.default_options = {
+  	scale: 5,
+  	speed: 1
+  }
+
+PixelNode_Effect_Pong.prototype.backgroundFX = null;
 
 
 /* Overridden Methods
  * ==================================================================================================================== */
 
 // init effect – override
-PixelNode_Effect_Tischtennis.prototype.init = function() {
+PixelNode_Effect_Pong.prototype.init = function() {
 	console.log("Init Effect Off".grey);
+  this.backgroundFX = global.pixelNode.gameManager.getEffectByName("RedBlue");
+
 }
 
-PixelNode_Effect_Tischtennis.prototype.pos = 4;
-PixelNode_Effect_Tischtennis.prototype.dir = 1;
+PixelNode_Effect_Pong.prototype.pos = 4;
+PixelNode_Effect_Pong.prototype.dir = 1;
 // draw effect on target
-PixelNode_Effect_Tischtennis.prototype.drawTarget = function(target, output) {
+PixelNode_Effect_Pong.prototype.drawTarget = function(target, output) {
   var self = this;
 
   var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Pong","player1"]);
@@ -99,9 +107,16 @@ PixelNode_Effect_Tischtennis.prototype.drawTarget = function(target, output) {
       canvas.rectangle(1,player1.pos,1,player1.width, player1color);
       canvas.rectangle(62,player2.pos,1,player2.width, player2color);
 
-      canvas.rectangle(Math.round(ball.posX)-1, Math.round(ball.posY)-1, 2, 2, ball.power ? [255,0,0]:[255,255,255]);
+      ballcolor = [255,255,255];
+      if (ball.power) ballcolor = [255,0,0];
+      if (ball.spin) ballcolor = [0,0,255];
+      canvas.rectangle(Math.round(ball.posX)-1, Math.round(ball.posY)-1, 3, 3, ballcolor.concat(0.6));
+      canvas.rectangle(Math.round(ball.posX), Math.round(ball.posY)-1, 1, 3, ballcolor);
+      canvas.rectangle(Math.round(ball.posX)-1, Math.round(ball.posY), 3, 1, ballcolor);
 
 
+    } else if (output == "background") {
+      self.backgroundFX.drawTarget(target, output);
     }
   }
 

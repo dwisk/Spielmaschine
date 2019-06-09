@@ -7,7 +7,9 @@
     "install": "^0.8.8",
     "npm": "^4.5.0",
     "pixelnode": "dwisk/PixelNode#develop",
+    "pixelnode-driver-digidot": "^0.0.1",
     "pixelnode-driver-pixelpusher": "dwisk/PixelNode_Driver_PixelPusher#develop",
+    "pixelnode-input-mpr121": "^0.2.1",
     "wpi-gpio": "^1.1.0"
   },
   "devDependencies": {},

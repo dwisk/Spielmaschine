@@ -106,7 +106,7 @@ Spielmaschine_Game_Pong.prototype.draw = function() {
       }
       self.stageScreen("ColouredRain", "PongStart", anybutton ? -1 : 0 , "game", false);
       if (global.config.inputMode == "server" && self.inited) {
-        global.pixelNode.gameManager.getEffectByName("PongStart").draw();
+        //global.pixelNode.gameManager.getEffectByName("PongStart").draw();
       }
       break;
     case "game":

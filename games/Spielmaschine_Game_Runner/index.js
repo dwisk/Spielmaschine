@@ -1,5 +1,5 @@
 /**
- * Spielmaschine_Game_Maze
+ * Spielmaschine_Game_Runner
  *
  * Animation Game
  *
@@ -17,7 +17,6 @@ var _ = require("underscore");
 var Runner = require("./Runner");
 var mazeGen = require('@sbj42/maze-generator');
 
-
 /* Class Constructor
  * ==================================================================================================================== */
 
@@ -25,35 +24,34 @@ var mazeGen = require('@sbj42/maze-generator');
 PixelNode_Game = require('../../node_modules/pixelnode/lib/PixelNode_Game.js');
 
 // define the Student class
-function Spielmaschine_Game_Maze(options, effects) {
+function Spielmaschine_Game_Runner(options, effects) {
   var self = this;
-  Spielmaschine_Game_Maze.super_.call(self, options, effects);
-  self.className = "Spielmaschine_Game_Maze";
+  Spielmaschine_Game_Runner.super_.call(self, options, effects);
+  self.className = "Spielmaschine_Game_Runner";
   self.public_dir = __dirname;
 }
 
 // class inheritance
-util.inherits(Spielmaschine_Game_Maze, PixelNode_Game);
+util.inherits(Spielmaschine_Game_Runner, PixelNode_Game);
 
 // module export
-module.exports = Spielmaschine_Game_Maze;
+module.exports = Spielmaschine_Game_Runner;
 
 
 /* Variables
  * ==================================================================================================================== */
 
-Spielmaschine_Game_Maze.prototype.default_options = { }
-Spielmaschine_Game_Maze.prototype.inited = false;
-Spielmaschine_Game_Maze.prototype.soundStarted = false;
-Spielmaschine_Game_Maze.prototype.maze = null;
-Spielmaschine_Game_Maze.prototype.map = [];
-Spielmaschine_Game_Maze.prototype.mazeOffsetX = 0;
-Spielmaschine_Game_Maze.prototype.mazeOffsetY = 0;
-Spielmaschine_Game_Maze.prototype.mazeWidth = 6;//31;
-Spielmaschine_Game_Maze.prototype.mazeHeight = 6;//15;
-Spielmaschine_Game_Maze.prototype.didHug = false;
-Spielmaschine_Game_Maze.prototype.level = 0;
-Spielmaschine_Game_Maze.prototype.levels = [
+Spielmaschine_Game_Runner.prototype.default_options = { }
+Spielmaschine_Game_Runner.prototype.inited = false;
+Spielmaschine_Game_Runner.prototype.maze = null;
+Spielmaschine_Game_Runner.prototype.map = [];
+Spielmaschine_Game_Runner.prototype.mazeOffsetX = 0;
+Spielmaschine_Game_Runner.prototype.mazeOffsetY = 0;
+Spielmaschine_Game_Runner.prototype.mazeWidth = 6;//31;
+Spielmaschine_Game_Runner.prototype.mazeHeight = 6;//15;
+Spielmaschine_Game_Runner.prototype.didHug = false;
+Spielmaschine_Game_Runner.prototype.level = 0;
+Spielmaschine_Game_Runner.prototype.levels = [
   [3,3],
   [6,3],
   [6,6],
@@ -77,12 +75,11 @@ Spielmaschine_Game_Maze.prototype.levels = [
  * ==================================================================================================================== */
 
 // init game – override
-Spielmaschine_Game_Maze.prototype.init = function() {
+Spielmaschine_Game_Runner.prototype.init = function() {
 	console.log("Init Game Pong".grey);
 	var self = this;
 
   self.mapEffect = global.pixelNode.gameManager.getEffectByName(self.options.mapEffect);
-  self.backgroundEffect = global.pixelNode.gameManager.getEffectByName(self.options.backgroundEffect);
 
 	if (global.config.inputMode == "server") {
     self.inited = true
@@ -90,7 +87,7 @@ Spielmaschine_Game_Maze.prototype.init = function() {
 }
 
 // reset game
-Spielmaschine_Game_Maze.prototype.setLevel = function(levelup = false) {
+Spielmaschine_Game_Runner.prototype.setLevel = function(levelup = false) {
   if (global.config.inputMode == "server" && this.inited) {
     this.didHug = false;
     if (levelup && this.level < this.levels.length) {
@@ -127,31 +124,31 @@ Spielmaschine_Game_Maze.prototype.setLevel = function(levelup = false) {
         }
     }
     // get data
-    var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player1"]);
-    var player2 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player2"]);
+    var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Runner","player1"]);
+    var player2 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Runner","player2"]);
     if (player1) player1.reset(0,1);
     if (player2) player2.reset(this.mazeWidth*2,this.mazeHeight*2-1);
-    global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","player1"], player1);
-    global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","player2"], player2);
-    global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","maze"], {
+    global.pixelNode.data.set(["games","Spielmaschine_Game_Runner","player1"], player1);
+    global.pixelNode.data.set(["games","Spielmaschine_Game_Runner","player2"], player2);
+    global.pixelNode.data.set(["games","Spielmaschine_Game_Runner","maze"], {
       offsetX: Math.round(31 - (this.mazeWidth*2-1)/2),
       offsetY: Math.round(15 - (this.mazeHeight*2-1)/2),
     });
 
-    global.pixelNode.data.set(["games","Spielmaschine_Game_MazeMap"], [[]]);
+    global.pixelNode.data.set(["games","Spielmaschine_Game_RunnerMap"], [[]]);
     for (var x = 0; x < this.mazeWidth*2+1; x++) {
       for (var y = 0; y < this.mazeHeight*2+1; y++) {
-        global.pixelNode.data.set(["games","Spielmaschine_Game_MazeMap",x], this.map[x]);
+        global.pixelNode.data.set(["games","Spielmaschine_Game_RunnerMap",x], this.map[x]);
       }
     }
   }
 }
-Spielmaschine_Game_Maze.prototype.reset = function(level) {
+Spielmaschine_Game_Runner.prototype.reset = function(level) {
 
   if (global.config.inputMode == "server") {
 
 
-    global.pixelNode.data.set(["games","Spielmaschine_Game_Maze"], {
+    global.pixelNode.data.set(["games","Spielmaschine_Game_Runner"], {
       player1: new Runner({
         posX: 0,
         posY: 1,
@@ -185,9 +182,9 @@ Spielmaschine_Game_Maze.prototype.reset = function(level) {
 }
 
 // draw effect – override this
-Spielmaschine_Game_Maze.prototype.draw = function() {
+Spielmaschine_Game_Runner.prototype.draw = function() {
 	var self = this;
-  var stage = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","stage"]);
+  var stage = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Runner","stage"]);
 
   switch(stage) {
     case "start":
@@ -196,14 +193,12 @@ Spielmaschine_Game_Maze.prototype.draw = function() {
         anybutton = (global.pixelNode.data.fastGet(["inputs","buttons","btn_1"])
                        && global.pixelNode.data.fastGet(["inputs","buttons","btn_10"]));
       }
-      self.stageScreen("ColouredRain", "MazeStart", anybutton ? -1 : 0 , "game", false);
+      self.stageScreen("Color", "MazeStart", anybutton ? -1 : 0 , "game", false);
       if (global.config.inputMode == "server" && self.inited) {
         global.pixelNode.gameManager.getEffectByName("MazeStart").draw();
       }
       break;
     case "game":
-      self.soundStarted = false;
-
       self.stageGame();
       break;
     case "won":
@@ -211,13 +206,6 @@ Spielmaschine_Game_Maze.prototype.draw = function() {
       break;
     case "point":
       self.stageScreen("Glitter", "GamePoint", 50, "game", false, true);
-
-      if (!self.soundStarted) {
-        global.pixelNode.sound.play("point.mp3");
-        self.soundStarted = true;
-      }
-
-
       break;
     case "hug":
       self.stageScreen("Fire", "GameHug", 50, "game", false);
@@ -233,21 +221,21 @@ Spielmaschine_Game_Maze.prototype.draw = function() {
 
 
 // stage Game
-Spielmaschine_Game_Maze.prototype.stageGame = function() {
+Spielmaschine_Game_Runner.prototype.stageGame = function() {
 	var self = this;
 
   // draw background
   var effect = global.pixelNode.gameManager.getEffectByName("Off");
   effect.draw();
+  self.mapEffect.draw();
 
   // get data
-  var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player1"]);
-  var player2 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player2"]);
+  var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Runner","player1"]);
+  var player2 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Runner","player2"]);
 
   // only play if server
   if (global.config.inputMode == "server" && self.inited) {
-
-		// move players
+    // move players
     player1.checkMove(this.map);
     player2.checkMove(this.map);
 
@@ -278,25 +266,18 @@ Spielmaschine_Game_Maze.prototype.stageGame = function() {
     }
 
 
-    global.pixelNode.data.set(["games","Spielmaschine_Game_Maze"], {
+    global.pixelNode.data.set(["games","Spielmaschine_Game_Runner"], {
       "player1": player1,
       "player2": player2,
       "stage": stage,
       "stageOptions": stageOptions
     }, true);
   }
-  // self.mapEffect.draw();
-
-  if (global.config.background) {
-    self.backgroundEffect.draw();
-  } else {
-    self.mapEffect.draw();
-  }
 }
 
 // stage Point
-Spielmaschine_Game_Maze.prototype.stagePointTimer = 0;
-Spielmaschine_Game_Maze.prototype.stageScreen = function(backgroundFX, foregroundFX, timerMax, nextGame, resetGame, nextLevel = false) {
+Spielmaschine_Game_Runner.prototype.stagePointTimer = 0;
+Spielmaschine_Game_Runner.prototype.stageScreen = function(backgroundFX, foregroundFX, timerMax, nextGame, resetGame, nextLevel = false) {
   global.pixelNode.gameManager.getEffectByName(backgroundFX).draw();
 
   if (global.config.inputMode == "server" && this.inited) {
@@ -304,19 +285,16 @@ Spielmaschine_Game_Maze.prototype.stageScreen = function(backgroundFX, foregroun
 
     if ((timerMax > 0 && this.stagePointTimer > timerMax) || timerMax == -1) {
       this.stagePointTimer = 0;
-
-      global.pixelNode.sound.stop();
-
-      global.pixelNode.data.set(["games","Spielmaschine_Game_Maze", "stage"], nextGame);
-      global.pixelNode.data.set(["games","Spielmaschine_Game_Maze", "stageOptions"], {});
+      global.pixelNode.data.set(["games","Spielmaschine_Game_Runner", "stage"], nextGame);
+      global.pixelNode.data.set(["games","Spielmaschine_Game_Runner", "stageOptions"], {});
       if (resetGame) this.reset(true);
       if (nextLevel) this.setLevel(true);
     }
   } else {
 
-    var stageOptions = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","stageOptions"]);
+    var stageOptions = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Runner","stageOptions"]);
     var effect = global.pixelNode.gameManager.getEffectByName(foregroundFX);
-    if (stageOptions && effect.variables) {
+    if (stageOptions) {
       effect.variables.player = stageOptions.player;
       effect.variables.score1 = stageOptions.score1;
       effect.variables.score2 = stageOptions.score2;

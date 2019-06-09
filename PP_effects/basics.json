@@ -90,7 +90,7 @@
   {
     "name": "RainBowRings",
     "module": "../effects/PixelNode_Effect_Rainbow",
-    "scale": 0.1,
+    "scale": 1,
     "speed": 100,
     "outputs": [
       {

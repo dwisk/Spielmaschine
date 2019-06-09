@@ -1,54 +1,6 @@
 /**
- * PixelNode_Effect_Canvas
+ * PixelNode_Effect_Wheels
  *
-   {
-     type: "fill",
-     color: [255, 0, 100, 0.5]
-   },
-   {
-     type: "line",
-     from: [0, 0],
-     to: [0, 0],
-     color: [255, 255, 255, 0.4]
-   },
-   {
-     type: "rectangle",
-     position: [5, 5],
-     width: 40,
-     height: 10,
-     color: [255, 255, 255, 0.6]
-   },
-   {
-     type: "oval",
-     position: [0, 0],
-     width: 100,
-     height: 100,
-     color: [255, 255, 255, 1]
-   },
-   {
-     type: "circle",
-     position: [25, 25],
-     radius: 10,
-     color: [255, 255, 255, 0.6]
-   },
-   {
-     type: "map",
-     position: [33, 5],
-     map: [
-       [1, 0, 0, 1],
-       [0, 1, 1, 0],
-       [0, 1, 1, 0],
-       [1, 0, 0, 1]
-     ],
-     color: [255, 255, 255, 0.6]
-   },
-   {
-     type: "text",
-     font: "8bitwonder",
-     text: "DWISK",
-     position: [3, 10],
-     color: [255, 255, 255, 1]
-   }
  * --------------------------------------------------------------------------------------------------------------------
  *
  * @author Amely Kling <mail@dwi.sk>
@@ -68,40 +20,40 @@ var PixelNode_Canvas = require('../node_modules/pixelnode/lib/PixelNode_Canvas.j
 PixelNode_Effect = require('../node_modules/pixelnode/lib/PixelNode_Effect.js');
 
 // define the Student class
-function PixelNode_Effect_Canvas(options,pixelData) {
+function PixelNode_Effect_Wheels(options,pixelData) {
   var self = this;
-  PixelNode_Effect_Canvas.super_.call(self, options, pixelData);
-  self.className = "PixelNode_Effect_Canvas";
+  PixelNode_Effect_Wheels.super_.call(self, options, pixelData);
+  self.className = "PixelNode_Effect_Wheels";
   self.public_dir = __dirname;
 }
 
 // class inheritance
-util.inherits(PixelNode_Effect_Canvas, PixelNode_Effect);
+util.inherits(PixelNode_Effect_Wheels, PixelNode_Effect);
 
 // module export
-module.exports = PixelNode_Effect_Canvas;
+module.exports = PixelNode_Effect_Wheels;
 
 
 /* Variables
  * ==================================================================================================================== */
 
- PixelNode_Effect_Canvas.prototype.n = 1;
- PixelNode_Effect_Canvas.prototype.canvas;
- PixelNode_Effect_Canvas.prototype.variables = {};
+ PixelNode_Effect_Wheels.prototype.n = 1;
+ PixelNode_Effect_Wheels.prototype.canvas;
+ PixelNode_Effect_Wheels.prototype.variables = {};
 
 
 /* Overridden Methods
  * ==================================================================================================================== */
 
 // init effect – override
-PixelNode_Effect_Canvas.prototype.init = function() {
+PixelNode_Effect_Wheels.prototype.init = function() {
 	console.log("Init Effect Off".grey);
 }
 
-PixelNode_Effect_Canvas.prototype.pos = 4;
-PixelNode_Effect_Canvas.prototype.dir = 1;
+PixelNode_Effect_Wheels.prototype.pos = 4;
+PixelNode_Effect_Wheels.prototype.dir = 1;
 // draw effect on target
-PixelNode_Effect_Canvas.prototype.drawTarget = function(target, output) {
+PixelNode_Effect_Wheels.prototype.drawTarget = function(target, output) {
 	var self = this;
   canvas = new PixelNode_Canvas(target);
 
@@ -121,7 +73,7 @@ PixelNode_Effect_Canvas.prototype.drawTarget = function(target, output) {
         break;
 
       case "rectangle":
-        canvas.rectangle(element.position[0], element.position[1], element.width, element.height, self.getValue(element.color));
+        canvas.rectangle(element.position[0], element.position[1], element.width, element.height, element.color);
         break;
 
       case "oval":
@@ -165,11 +117,7 @@ PixelNode_Effect_Canvas.prototype.drawTarget = function(target, output) {
 
 }
 
-PixelNode_Effect_Canvas.prototype.reset = function () {
-  this.variables = [];
-}
-
-PixelNode_Effect_Canvas.prototype.getValue = function(property) {
+PixelNode_Effect_Wheels.prototype.getValue = function(property) {
   if (typeof property == "function") {
     return property.bind(this)();
   } else {
@@ -177,7 +125,7 @@ PixelNode_Effect_Canvas.prototype.getValue = function(property) {
   }
 }
 
-PixelNode_Effect_Canvas.prototype.bounce = function(name, conf) {
+PixelNode_Effect_Wheels.prototype.bounce = function(name, conf) {
   if (this.variables[name] == undefined) this.variables[name] =  {};
   var bounceConf = Object.assign({
     min: 0,

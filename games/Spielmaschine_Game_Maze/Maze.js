@@ -43,7 +43,7 @@ module.exports = PixelNode_Effect_Maze;
  PixelNode_Effect_Maze.prototype.mazeOffsetX = 0;
  PixelNode_Effect_Maze.prototype.mazeOffsetY = 0;
  PixelNode_Effect_Maze.prototype.maze;
- PixelNode_Effect_Maze.prototype.backgroundFX = null;
+
 
 
 /* Overridden Methods
@@ -52,7 +52,7 @@ module.exports = PixelNode_Effect_Maze;
 // init effect – override
 PixelNode_Effect_Maze.prototype.init = function() {
 	console.log("Init Effect Maze".grey);
-this.backgroundFX = global.pixelNode.gameManager.getEffectByName("RedBlue");
+
 }
 
 // draw effect on target
@@ -109,7 +109,5 @@ PixelNode_Effect_Maze.prototype.drawTarget = function(target, output) {
     canvas.dot(this.mazeOffsetX + player1.posX, this.mazeOffsetY + player1.posY, player1.color);
     canvas.dot(this.mazeOffsetX + player2.posX, this.mazeOffsetY + player2.posY, player2.color);
 
-  }else if (output == "background") {
-    self.backgroundFX.drawTarget(target, "rainbow");
   }
 }

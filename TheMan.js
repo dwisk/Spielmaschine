@@ -21,6 +21,7 @@ pixelnode = new PixelNode({
 	config: {
 		"title": "Spielmaschine Pixelpusher-Display",
 		"inputMode": "client",
+		"background": true,
 
 		"webServer": {
 			"start": false,
@@ -31,17 +32,19 @@ pixelnode = new PixelNode({
 		// DRIVERS ----------------------------------------------------------------------------------------------------
 
 		"pixelDrivers": [
-			{
-				"module": "pixelnode-driver-pixelpusher",
-				"delay": 25,
-				"dimmer": 0.75
+		{
+			"module": "pixelnode-driver-fadecandy",
+			"address": "127.0.0.1",
+			"port": 7890,
+			"delay": 50,
+			"dimmer": 0.5
 			}
 		],
 
 
 		// EFFECTS ----------------------------------------------------------------------------------------------------
 
-		"effects": PixelNode.requireFile("./PP_effects"),
+		"effects": PixelNode.requireFile("./TheMan_effects"),
 		"after_effects": [
 		],
 
@@ -52,7 +55,7 @@ pixelnode = new PixelNode({
 			{
 				"name": "socketclient",
 				"module": "../inputs/PixelNode_Input_WebSocket_Client.js",
-				"server": "http://localhost:3001"
+				"server": "http://192.168.3.35:3001"
 			}
 			// {
 			// 	"name": "rgb",
@@ -66,12 +69,7 @@ pixelnode = new PixelNode({
     // FONTS ----------------------------------------------------------------------------------------------------
 
 		"fonts": [
-			"./fonts/8bitwonder",
-      "./fonts/04b3",
-			"./fonts/commonpixel",
-  		"./fonts/hachicro",
-  		"./fonts/3dventure",
-  		"./fonts/PressStart2P"
+
 		],
 
 		// GAMES  ----------------------------------------------------------------------------------------------------
@@ -80,8 +78,10 @@ pixelnode = new PixelNode({
 
 	},
 
-	mapping: "PP_mapping.json"
+	mapping: "TheMan_mapping.json"
 });
+
+
 
 
 // override effects

@@ -34,23 +34,18 @@ new PixelNode({
 		},
 
 		"sound": {
-<<<<<<< HEAD
-			enabled: true,
-=======
 			enabled: false,
->>>>>>> master2019
 			dir: "sounds"
 		},
 
 		// DRIVERS ----------------------------------------------------------------------------------------------------
 
 		"pixelDrivers": [
-		{
-			"module": "pixelnode-driver-fadecandy",
-			"address": "127.0.0.1",
-			"port": 7890,
-			"delay": 50,
-			"dimmer": 1
+			{
+				"module": "pixelnode-driver-digidot",
+				"delay": 50,
+				"dimmer": 0.05,
+				"ledcount": 128
 			}
 		],
 
@@ -69,6 +64,36 @@ new PixelNode({
 				"name": "switch",
 				"module": "../inputs/PixelNode_Input_WebSocket"
 			},
+			{
+				"name": "touch1",
+				"module": "pixelnode-input-mpr121", 
+//				"crash_waittime": 1,
+//				"crash_cautious_lifetime": 20,
+//				"crash_cautious_waittime": 2,
+				"i2c_bus": 1,
+				"i2c_address": 0x5A,
+				"offset": 0,
+				"verbose": true,
+//				"treshold_touch": 12,
+//				"treshold_release": 6
+
+			},
+			{
+				"name": "touch2",
+				"module": "pixelnode-input-mpr121", 
+//				"crash_waittime": 1,
+//				"crash_cautious_lifetime": 20,
+	//			"crash_cautious_waittime": 2,
+				"i2c_bus": 1,
+				"i2c_address": 0x5B,
+				"offset": 0,
+				"verbose": true,
+//				"treshold_touch": 12,
+//				"treshold_release": 6
+
+			},
+			
+			
 			{
 				"name": "buttons",
 				"module": "./lib/PixelNode_Input_WiringPi.js",
@@ -103,5 +128,20 @@ new PixelNode({
 
 	},
 
-	mapping: "FC_mapping.json"
+	mapping: "DD_mapping.json"
 });
+
+
+
+global.pixelNode.data.on("changed_inputs_touch1_touches_11", function(paths, value) {
+		if (value == true) {
+			global.pixelNode.gameManager.nextGame();
+		}
+	});
+
+	global.pixelNode.data.on("changed_inputs_touch2_touches_11", function(paths, value) {
+		if (value == true) {
+			global.pixelNode.gameManager.prevGame();
+		}
+	});
+	

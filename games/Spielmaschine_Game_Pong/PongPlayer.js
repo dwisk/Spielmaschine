@@ -25,6 +25,8 @@ function PongPlayer(options) {
     shields: 3,
     power: false,
     powers: 3,
+		speed: 1,
+		fieldWidth: 30,
     inputs: {
       shield: ["inputs","buttons","btn_7"]
     }
@@ -39,7 +41,9 @@ function PongPlayer(options) {
   this.shields = init_options.shields;
   this.power = init_options.power;
   this.powers = init_options.powers;
+  this.speed = init_options.speed;
   this.inputs = init_options.inputs;
+	this.fieldWidth = init_options.fieldWidth;
   this.isUp = false;
   this.isDown = false;
 }
@@ -72,6 +76,7 @@ PongPlayer.prototype.checkShield = function() {
 // checks if power button is pressed
 PongPlayer.prototype.checkPower = function() {
   var playerpower = global.pixelNode.data.fastGet(this.inputs.power);
+
   if (playerpower && !this.power && this.powers > 0) {
     this.power = true;
     this.width = 4;
@@ -89,9 +94,9 @@ PongPlayer.prototype.checkMove = function() {
   this.isUp = global.pixelNode.data.fastGet(this.inputs.up);
   this.isDown = global.pixelNode.data.fastGet(this.inputs.down);
 
-  if (this.isUp) { this.pos--;}
-  if (this.isDown) { this.pos++;}
+  if (this.isUp) { this.pos -= this.speed;}
+  if (this.isDown) { this.pos += this.speed;}
 
   if (this.pos < 0) this.pos = 0;
-  if (this.pos > 32-this.width) this.pos = 32-this.width;
+  if (this.pos > this.fieldWidth-this.width) this.pos = this.fieldWidth-this.width;
 }

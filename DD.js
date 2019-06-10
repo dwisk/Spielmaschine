@@ -43,16 +43,19 @@ new PixelNode({
 		"pixelDrivers": [
 			{
 				"module": "pixelnode-driver-digidot",
-				"delay": 50,
+				"delay": 250,
 				"dimmer": 0.05,
-				"ledcount": 128
+				"ledcount": 128,
+				packageDelay: 20,
+				packageChunk: 16
+
 			}
 		],
 
 
 		// EFFECTS ----------------------------------------------------------------------------------------------------
 
-		"effects": PixelNode.requireFile("./FC_effects"),
+		"effects": PixelNode.requireFile("./DD_effects"),
 		"after_effects": [
 		],
 
@@ -123,7 +126,7 @@ new PixelNode({
 
 
 		// GAMES  ----------------------------------------------------------------------------------------------------
-		"games": PixelNode.requireFile("Games.json"),
+		"games": PixelNode.requireFile("./Games"),
 
 
 	},
@@ -131,8 +134,7 @@ new PixelNode({
 	mapping: "DD_mapping.json"
 });
 
-
-
+/*
 global.pixelNode.data.on("changed_inputs_touch1_touches_11", function(paths, value) {
 		if (value == true) {
 			global.pixelNode.gameManager.nextGame();
@@ -143,5 +145,5 @@ global.pixelNode.data.on("changed_inputs_touch1_touches_11", function(paths, val
 		if (value == true) {
 			global.pixelNode.gameManager.prevGame();
 		}
-	});
+	});*/
 	

@@ -76,6 +76,37 @@ PixelNode_Effect_Maze.prototype.drawTarget = function(target, output) {
       [1, 0, 0, 0, 0],
       [0, 0, 0, 0, 1]
     ], 0 ,0 , [0,0,0]);
+		
+		
+    } else if (output == "panel1" || output == "panel2") {
+			canvas.fill([0,0,0]);
+			if (output == "panel1") {
+				canvas.drawMap([
+					[1, 1, 1, 0, 0, 1, 1, 1],
+					[1, 1, 0, 0, 0, 0, 1, 1],
+					[1, 0, 1, 0, 0, 1, 0, 1],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[1, 0, 1, 0, 0, 1, 0, 1],
+					[1, 1, 0, 0, 0, 0, 1, 1],
+					[1, 1, 1, 0, 0, 1, 1, 1],
+				], 0 ,0 , [255,0,0]);
+				
+
+			} else if (true) {
+				canvas.drawMap([
+					[1, 1, 1, 0, 0, 1, 1, 1],
+					[1, 1, 0, 0, 0, 0, 1, 1],
+					[1, 0, 1, 0, 0, 1, 0, 1],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[1, 0, 1, 0, 0, 1, 0, 1],
+					[1, 1, 0, 0, 0, 0, 1, 1],
+					[1, 1, 1, 0, 0, 1, 1, 1],
+				], 0 ,0 , [0,0,255]);
+
+
+			}
 
   } else if (output == "table") {
     var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player1"]);

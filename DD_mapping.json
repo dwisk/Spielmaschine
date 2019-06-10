@@ -26,6 +26,30 @@
     "sizeY": 8,
     "rotate": false,
     "flip": true
+	},
+	
+	{
+		"name": "panel1",
+		"pixelColorCorrection": true,
+    "zigzag": true,
+    "sizeX": 8,
+    "sizeY": 8,
+    "rotate": false,
+    "flip": true,
+		"offset": 0
+	},
+
+
+	{
+		"name": "panel2",
+		"pixelColorCorrection": true,
+    "zigzag": true,
+    "sizeX": 8,
+    "sizeY": 8,
+    "rotate": true,
+    "flip": false,
+		"offset": 64
 	}
+
 
 ]

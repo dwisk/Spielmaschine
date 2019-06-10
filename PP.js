@@ -75,7 +75,7 @@ pixelnode = new PixelNode({
 		],
 
 		// GAMES  ----------------------------------------------------------------------------------------------------
-		"games": PixelNode.requireFile("Games.json"),
+		"games": PixelNode.requireFile("./Games"),
 
 
 	},

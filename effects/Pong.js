@@ -86,7 +86,7 @@ PixelNode_Effect_Pong.prototype.drawTarget = function(target, output) {
         canvas.drawMap(font.mapWord(player2.score.toString()), 42,11, [255,255,255, 0.4]);
       }
 
-      canvas.rectangle(31,0, 2, 32, [255,255,255,0.3]);
+      canvas.rectangle(30/2,0, 2, 32, [255,255,255,0.3]);
 
       var player1color =  [255,255,255];
       var player2color =  [255,255,255];
@@ -97,7 +97,7 @@ PixelNode_Effect_Pong.prototype.drawTarget = function(target, output) {
       if (player2.power) player2color = [255, 0, 0];
 
       canvas.rectangle(1,player1.pos,1,player1.width, player1color);
-      canvas.rectangle(62,player2.pos,1,player2.width, player2color);
+      canvas.rectangle(15,player2.pos,1,player2.width, player2color);
 
       ballcolor = [255,255,255];
       if (ball.power) ballcolor = [255,0,0];
@@ -107,7 +107,86 @@ PixelNode_Effect_Pong.prototype.drawTarget = function(target, output) {
       canvas.rectangle(Math.round(ball.posX)-1, Math.round(ball.posY), 3, 1, ballcolor);
 
 
-    }
+    } else if (output == "panel1" || output == "panel2") {
+			
+			if (output == "panel1") {
+				canvas.drawMap([
+					[1, 1, 1, 0, 0, 0, 0, 0],
+					[1, 1, 0, 0, 0, 0, 0, 0],
+					[1, 0, 1, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 1, 0, 1],
+					[0, 0, 0, 0, 0, 0, 1, 1],
+					[0, 0, 0, 0, 0, 1, 1, 1],
+				], 0 ,0 , [255,255,255]);
+				canvas.drawMap([
+					[0, 0, 0, 0, 1, 1, 1, 1],
+					[0, 0, 0, 0, 1, 1, 1, 1],
+					[0, 0, 0, 0, 0, 0, 1, 1],
+					[0, 0, 0, 0, 0, 0, 1, 1],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+				], 0 ,0 , [255 * player1.powers/3,0,0]);
+
+				canvas.drawMap([
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[1, 1, 0, 0, 0, 0, 0, 0],
+					[1, 1, 0, 0, 0, 0, 0, 0],
+					[1, 1, 1, 1, 0, 0, 0, 0],
+					[1, 1, 1, 1, 0, 0, 0, 0],
+				], 0 ,0 , [0,0,255 * player1.shields/3]);
+
+			} else if (true) {
+				canvas.drawMap([
+					[0, 0, 0, 0, 0, 1, 1, 1],
+					[0, 0, 0, 0, 0, 0, 1, 1],
+					[0, 0, 0, 0, 0, 1, 0, 1],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[1, 0, 1, 0, 0, 0, 0, 0],
+					[1, 1, 0, 0, 0, 0, 0, 0],
+					[1, 1, 1, 0, 0, 0, 0, 0],
+				], 0 ,0 , [255,255,255]);
+
+				canvas.drawMap([
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 1, 1],
+					[0, 0, 0, 0, 0, 0, 1, 1],
+					[0, 0, 0, 0, 1, 1, 1, 1],
+					[0, 0, 0, 0, 1, 1, 1, 1],
+				], 0 ,0 , [0,0,255 * player2.shields/3]);
+
+				canvas.drawMap([
+					[1, 1, 1, 1, 0, 0, 0, 0],
+					[1, 1, 1, 1, 0, 0, 0, 0],
+					[1, 1, 0, 0, 0, 0, 0, 0],
+					[1, 1, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+				], 0 ,0 , [255 * player2.powers/3,0,0]);
+
+			}
+			/*
+			
+			
+      canvas.dot(0, 1, [255 * player1.powers/3], 0, 0);
+      canvas.dot(0, 3, [255 * player2.powers/3], 0, 0);
+      canvas.dot(1, 1, [0, 0, 255 * player1.shields/3]);
+      canvas.dot(1, 3, [0, 0, 255 * player2.shields/3]);
+			*/
+
+		}
   }
 
 

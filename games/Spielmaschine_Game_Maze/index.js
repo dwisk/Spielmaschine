@@ -42,7 +42,30 @@ module.exports = Spielmaschine_Game_Maze;
 /* Variables
  * ==================================================================================================================== */
 
-Spielmaschine_Game_Maze.prototype.default_options = { }
+Spielmaschine_Game_Maze.prototype.default_options = {
+			"startButtons": [
+			["inputs","touch1","touches", 4],
+			["inputs","touch1","touches", 1]			
+		],
+		
+		player1:{ 
+			inputs: {
+				left: ["inputs","touch1","touches",3],
+				right: ["inputs","touch1","touches",7],
+				up: ["inputs","touch1","touches",4],
+				down: ["inputs","touch1","touches", 1]
+			}
+		},
+		player2: {
+			inputs: {
+				right: ["inputs","touch2","touches",6],
+				left: ["inputs","touch2","touches",2],
+				up: ["inputs","touch2","touches",4],
+				down: ["inputs","touch2","touches", 0]
+			}
+		},
+
+}
 Spielmaschine_Game_Maze.prototype.inited = false;
 Spielmaschine_Game_Maze.prototype.soundStarted = false;
 Spielmaschine_Game_Maze.prototype.maze = null;
@@ -61,14 +84,12 @@ Spielmaschine_Game_Maze.prototype.levels = [
   [9,9],
   [12,9],
   [12,12],
-  [15,12],
-  [15,15],
-  [18,15],
+/*  [18,15],
   [21,15],
   [24,15],
   [27,15],
   [29,15],
-  [31,15]
+  [31,15]*/
 ]
 
 
@@ -134,8 +155,8 @@ Spielmaschine_Game_Maze.prototype.setLevel = function(levelup = false) {
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","player1"], player1);
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","player2"], player2);
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","maze"], {
-      offsetX: Math.round(31 - (this.mazeWidth*2-1)/2),
-      offsetY: Math.round(15 - (this.mazeHeight*2-1)/2),
+      offsetX: Math.round(14 - (this.mazeWidth*2-1)/2),
+      offsetY: Math.round(14 - (this.mazeHeight*2-1)/2),
     });
 
     global.pixelNode.data.set(["games","Spielmaschine_Game_MazeMap"], [[]]);
@@ -152,28 +173,16 @@ Spielmaschine_Game_Maze.prototype.reset = function(level) {
 
 
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze"], {
-      player1: new Runner({
+      player1: new Runner(Object.assign({
         posX: 0,
         posY: 1,
-        color: [255,0,0],
-        inputs: {
-          up: ["inputs","buttons","btn_2"],
-          down: ["inputs","buttons","btn_7"],
-          left: ["inputs","buttons","btn_6"],
-          right: ["inputs","buttons","btn_8"]
-        }
-      }),
-      player2: new Runner({
+        color: [255,0,0]
+      }, this.options.player1)),
+      player2: new Runner(Object.assign({
         posX: this.mazeWidth*2,
         posY: this.mazeHeight*2-1,
-        color: [0,0,255],
-        inputs: {
-          up: ["inputs","buttons","btn_4"],
-          down: ["inputs","buttons","btn_9"],
-          left: ["inputs","buttons","btn_3"],
-          right: ["inputs","buttons","btn_5"]
-        }
-      }),
+        color: [0,0,255]
+      }, this.options.player2)),
       stage: "start"
 
     });
@@ -193,8 +202,8 @@ Spielmaschine_Game_Maze.prototype.draw = function() {
     case "start":
       var anybutton = false;
       if (global.config.inputMode == "server" && self.inited) {
-        anybutton = (global.pixelNode.data.fastGet(["inputs","buttons","btn_1"])
-                       && global.pixelNode.data.fastGet(["inputs","buttons","btn_10"]));
+        anybutton = (global.pixelNode.data.fastGet(this.options.startButtons[0])
+                       && global.pixelNode.data.fastGet(this.options.startButtons[1]));
       }
       self.stageScreen("ColouredRain", "MazeStart", anybutton ? -1 : 0 , "game", false);
       if (global.config.inputMode == "server" && self.inited) {
@@ -247,7 +256,7 @@ Spielmaschine_Game_Maze.prototype.stageGame = function() {
   // only play if server
   if (global.config.inputMode == "server" && self.inited) {
 
-		// move players
+    // move players
     player1.checkMove(this.map);
     player2.checkMove(this.map);
 

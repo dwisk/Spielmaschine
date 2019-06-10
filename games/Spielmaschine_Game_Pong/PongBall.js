@@ -17,9 +17,9 @@
 function PongBall(options) {
   // default values
   var init_options = Object.assign({
-    posX: 32,
+    posX: 30,
     posY: 16,
-    bounceX: 32,
+    bounceX: 16,
     bounceY: 16,
     speedX: 0,
     speedY: 0,
@@ -40,7 +40,7 @@ module.exports = PongBall;
 /* Variables
  * ==================================================================================================================== */
 
-PongBall.defaultSpeed = 1.5;
+PongBall.defaultSpeed = 1;
 
 /* Methods
 * ==================================================================================================================== */
@@ -110,7 +110,7 @@ PongBall.prototype.bouncePlayer = function(player, opponent) {
 
   // check if player bounced the ball
   } else if (
-      ((player.side == "left" && Math.round(this.bounceX) <= 3 ) || (player.side == "right" && Math.round(this.bounceX) >= 60 ))
+      ((player.side == "left" && Math.round(this.bounceX) <= 3 ) || (player.side == "right" && Math.round(this.bounceX) >= 60 ))
       && this.bounceY >= player.pos && this.bounceY <= player.pos + player.width) {
 
     global.pixelNode.sound.play("pong.mp3");

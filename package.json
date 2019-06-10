@@ -4,9 +4,12 @@
   "description": "Pixelnode App",
   "main": " ",
   "dependencies": {
+    "@sbj42/maze-generator": "^2.0.6",
+    "@sbj42/maze-generator-backtrack": "^0.1.5",
     "install": "^0.8.8",
+    "lodash": "^4.17.11",
     "npm": "^4.5.0",
-    "pixelnode": "dwisk/PixelNode#develop",
+    "pixelnode": "^0.6.3",
     "pixelnode-driver-digidot": "^0.0.1",
     "pixelnode-driver-pixelpusher": "dwisk/PixelNode_Driver_PixelPusher#develop",
     "pixelnode-input-mpr121": "^0.2.1",

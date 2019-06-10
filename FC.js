@@ -34,11 +34,7 @@ new PixelNode({
 		},
 
 		"sound": {
-<<<<<<< HEAD
-			enabled: true,
-=======
 			enabled: false,
->>>>>>> master2019
 			dir: "sounds"
 		},
 
@@ -98,8 +94,7 @@ new PixelNode({
 
 
 		// GAMES  ----------------------------------------------------------------------------------------------------
-		"games": PixelNode.requireFile("Games.json"),
-
+		"games": PixelNode.requireFile("./Games"),
 
 	},
 

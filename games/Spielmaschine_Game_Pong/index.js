@@ -41,7 +41,32 @@ module.exports = Spielmaschine_Game_Pong;
 /* Variables
  * ==================================================================================================================== */
 
-Spielmaschine_Game_Pong.prototype.default_options = { }
+Spielmaschine_Game_Pong.prototype.default_options = { 
+	startButtons: [
+		["inputs","buttons","btn_3"],
+		["inputs","buttons","btn_8"]
+	],
+	player1:{ 
+		posX: 3,
+		fieldWidth: 32,
+		inputs: {
+      shield: ["inputs","buttons","btn_7"],
+      power: ["inputs","buttons","btn_2"],
+      up: ["inputs","buttons","btn_1"],
+      down: ["inputs","buttons","btn_6"]
+		}
+	},
+	player2: {
+		posX: 67,
+		fieldWidth: 32,
+		inputs: {
+	    shield: ["inputs","buttons","btn_9"],
+      power: ["inputs","buttons","btn_4"],
+      up: ["inputs","buttons","btn_5"],
+      down: ["inputs","buttons","btn_10"]
+		}
+	}
+}
 Spielmaschine_Game_Pong.prototype.inited = false;
 Spielmaschine_Game_Pong.prototype.backgroundEffect = null;
 Spielmaschine_Game_Pong.prototype.foregroundEffect = null;
@@ -66,25 +91,13 @@ Spielmaschine_Game_Pong.prototype.init = function() {
 // reset game
 Spielmaschine_Game_Pong.prototype.reset = function() {
   global.pixelNode.data.set(["games","Spielmaschine_Game_Pong"], {
-    player1: new PongPlayer({
-      posX: 3,
+    player1: new PongPlayer(Object.assign({
       side: "left",
-      inputs: {
-      shield: ["inputs","buttons","btn_7"],
-      power: ["inputs","buttons","btn_2"],
-      up: ["inputs","buttons","btn_1"],
-      down: ["inputs","buttons","btn_6"]
-
-    }}),
-    player2: new PongPlayer({
-      posX: 67,
-      side: "right",
-      inputs: {
-      shield: ["inputs","buttons","btn_9"],
-      power: ["inputs","buttons","btn_4"],
-      up: ["inputs","buttons","btn_5"],
-      down: ["inputs","buttons","btn_10"]
-    }}),
+      inputs: this.options.player1inputs
+			}, this.options.player1)),
+    player2: new PongPlayer(Object.assign({
+      side: "right"
+			}, this.options.player2)),
     ball: new PongBall({
       speedX: 0.5 - Math.random(1) > 0 ? PongBall.defaultSpeed : PongBall.defaultSpeed * -1
     }),
@@ -101,18 +114,13 @@ Spielmaschine_Game_Pong.prototype.draw = function() {
     case "start":
       var anybutton = false;
       if (global.config.inputMode == "server" && self.inited) {
-        anybutton = (global.pixelNode.data.fastGet(["inputs","buttons","btn_3"])
-                       && global.pixelNode.data.fastGet(["inputs","buttons","btn_8"]));
+        anybutton = (global.pixelNode.data.fastGet(this.options.startButtons[0])
+                       && global.pixelNode.data.fastGet(this.options.startButtons[1]));
       }
-<<<<<<< HEAD
-      self.stageScreen("Color", "PongStart", anybutton ? -1 : 0 , "game", false);
-      if (global.config.inputMode == "server" && self.inited) {
-        global.pixelNode.gameManager.getEffectByName("PongStart").draw();
-=======
+
       self.stageScreen("ColouredRain", "PongStart", anybutton ? -1 : 0 , "game", false);
       if (global.config.inputMode == "server" && self.inited) {
-        //global.pixelNode.gameManager.getEffectByName("PongStart").draw();
->>>>>>> master2019
+        global.pixelNode.gameManager.getEffectByName("PongStart").draw();
       }
       break;
     case "game":

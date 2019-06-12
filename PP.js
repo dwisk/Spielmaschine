@@ -52,6 +52,14 @@ pixelnode = new PixelNode({
 			{
 				"name": "socketclient",
 				"module": "../inputs/PixelNode_Input_WebSocket_Client.js",
+				
+				// remote enlighted controller via WifI
+				"server": "http://192.168.5.104:3001",
+				
+				// remote enlighted controller via LAN
+				//"server": "http://192.168.3.69:3001",
+				
+				// local
 				"server": "http://localhost:3001"
 			}
 			// {

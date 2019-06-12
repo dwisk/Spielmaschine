@@ -4,10 +4,16 @@
   "description": "Pixelnode App",
   "main": " ",
   "dependencies": {
+    "@sbj42/maze-generator": "^2.0.6",
+    "@sbj42/maze-generator-backtrack": "^0.1.5",
+    "buffertools": "^2.1.6",
     "install": "^0.8.8",
+    "lodash": "^4.17.11",
     "npm": "^4.5.0",
-    "pixelnode": "dwisk/PixelNode#develop",
+    "pixelnode": "^0.6.2",
+    "pixelnode-driver-fadecandy": "^0.0.4",
     "pixelnode-driver-pixelpusher": "dwisk/PixelNode_Driver_PixelPusher#develop",
+    "pngjs": "^3.4.0",
     "wpi-gpio": "^1.1.0"
   },
   "devDependencies": {},

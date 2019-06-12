@@ -1,30 +1,14 @@
 [
-	{
-		"name": "Spielmaschine",
-		"default": true,
-		"title": "Spielmaschine",
-		"module": "../games/PixelNode_Game_EffectQueue",
-		"inputs": {
-			"color_left": "inputs.rgb.color_left",
-			"color_right": "inputs.rgb.color_right",
-			"touches": "touch.touches"
-		},
-		"afterEffect": "TitleDwisk",
 
-		"queue": [
-			{ "effect": "ColouredRain", "duration": 5000 },
-			{ "effect": "Fire", "duration": 5000 },
-			{ "effect": "Rain", "duration": 5000 },
-			{ "effect": "RedBlue", "duration": 5000 },
-			{ "effect": "Glitter", "duration": 5000 }
-		]
-	},
+
 	{
-		"name": "Tischtennis",
-		"title": "Tischtennis",
-		"module": "./games/Spielmaschine_Game_Pong",
-		"backgroundEffect": "RedBlue",
-		"foregroundEffect": "Tischtennis",
+		"name": "BeFree",
+		"icon": "entypo/paper-plane",
+		"title": "BeFree",
+		"module": "./games/Spielmaschine_Game_Maze",
+		"mapEffect": "Maze",
+		"backgroundEffect": "Wall",
+		"foregroundEffect": "Pong",
 		"inputs": {
 			"color_left": "inputs.rgb.color_left",
 			"color_right": "inputs.rgb.color_right",
@@ -33,5 +17,52 @@
 		"speed": 0.01,
 		"touch_input": true,
 		"color_input": true
+	},
+	{
+		"name": "Tischtennis",
+		"icon": "entypo/paper-plane",
+		"title": "Tischtennis",
+		"module": "./games/Spielmaschine_Game_Pong",
+		"backgroundEffect": "Wave",
+		"foregroundEffect": "Pong",
+		"inputs": {
+			"color_left": "inputs.rgb.color_left",
+			"color_right": "inputs.rgb.color_right",
+			"touches": "touch.touches"
+		},
+		"speed": 0.01,
+		"touch_input": true,
+		"color_input": true
+	},
+
+{
+		"name": "Spielmaschine",
+		"icon": "entypo/paper-plane",
+		"default": true,
+		"title": "Spielmaschine",
+		"allowBrightness": true,
+		"module": "./games/Spielmaschine_TitleQueue",
+		"inputs": {
+			"color_left": "inputs.rgb.color_left",
+			"color_right": "inputs.rgb.color_right",
+			"touches": "touch.touches"
+		},
+		"afterEffect": "TitleBurnnight",
+
+		"queue": [
+			{ "effect": "ColouredRain", "duration": 20000 },
+			{ "effect": "RedBlue", "afterEffect": "bmpRadicalInclusion", "duration": 10000 },
+			{ "effect": "Wave", "afterEffect": "bmpGifting", "duration": 10000 },
+			{ "effect": "RainBow", "afterEffect": "bmpDecommodifcation", "duration": 10000 },
+			{ "effect": "Fire", "afterEffect": "bmpRadicalSelfReliance", "duration": 10000 },
+			{ "effect": "ColouredRain", "afterEffect": "bmpRadicalSelfExpression", "duration": 10000 },
+			{ "effect": "RainBow", "afterEffect": "bmpCommunalEffort", "duration": 10000 },
+			{ "effect": "Color", "afterEffect": "bmpCivicResponsibility", "duration": 10000 },
+			{ "effect": "Rain", "afterEffect": "bmpLeaveNoTrace", "duration": 10000 },
+			{ "effect": "RainBow", "afterEffect": "bmpParticipation", "duration": 10000 },
+			{ "effect": "Glitter", "afterEffect": "bmpImmediacy", "duration": 10000 }
+
+
+		]
 	}
 ]

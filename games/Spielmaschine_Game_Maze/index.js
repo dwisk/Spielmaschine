@@ -63,12 +63,12 @@ Spielmaschine_Game_Maze.prototype.levels = [
   [12,12],
   [15,12],
   [15,15],
-  [18,15],
+/*  [18,15],
   [21,15],
   [24,15],
   [27,15],
   [29,15],
-  [31,15]
+  [31,15]*/
 ]
 
 
@@ -82,6 +82,7 @@ Spielmaschine_Game_Maze.prototype.init = function() {
 	var self = this;
 
   self.mapEffect = global.pixelNode.gameManager.getEffectByName(self.options.mapEffect);
+  self.backgroundEffect = global.pixelNode.gameManager.getEffectByName(self.options.backgroundEffect);
 
 	if (global.config.inputMode == "server") {
     self.inited = true
@@ -133,7 +134,7 @@ Spielmaschine_Game_Maze.prototype.setLevel = function(levelup = false) {
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","player1"], player1);
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","player2"], player2);
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","maze"], {
-      offsetX: Math.round(31 - (this.mazeWidth*2-1)/2),
+      offsetX: Math.round(30 - (this.mazeWidth*2-1)/2),
       offsetY: Math.round(15 - (this.mazeHeight*2-1)/2),
     });
 
@@ -195,7 +196,7 @@ Spielmaschine_Game_Maze.prototype.draw = function() {
         anybutton = (global.pixelNode.data.fastGet(["inputs","buttons","btn_1"])
                        && global.pixelNode.data.fastGet(["inputs","buttons","btn_10"]));
       }
-      self.stageScreen("Color", "MazeStart", anybutton ? -1 : 0 , "game", false);
+      self.stageScreen("ColouredRain", "MazeStart", anybutton ? -1 : 0 , "game", false);
       if (global.config.inputMode == "server" && self.inited) {
         global.pixelNode.gameManager.getEffectByName("MazeStart").draw();
       }
@@ -238,7 +239,6 @@ Spielmaschine_Game_Maze.prototype.stageGame = function() {
   // draw background
   var effect = global.pixelNode.gameManager.getEffectByName("Off");
   effect.draw();
-  self.mapEffect.draw();
 
   // get data
   var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player1"]);
@@ -246,6 +246,7 @@ Spielmaschine_Game_Maze.prototype.stageGame = function() {
 
   // only play if server
   if (global.config.inputMode == "server" && self.inited) {
+
     // move players
     player1.checkMove(this.map);
     player2.checkMove(this.map);
@@ -284,6 +285,13 @@ Spielmaschine_Game_Maze.prototype.stageGame = function() {
       "stageOptions": stageOptions
     }, true);
   }
+  // self.mapEffect.draw();
+
+  if (global.config.background) {
+    self.backgroundEffect.draw();
+  } else {
+    self.mapEffect.draw();
+  }
 }
 
 // stage Point
@@ -308,7 +316,7 @@ Spielmaschine_Game_Maze.prototype.stageScreen = function(backgroundFX, foregroun
 
     var stageOptions = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","stageOptions"]);
     var effect = global.pixelNode.gameManager.getEffectByName(foregroundFX);
-    if (stageOptions) {
+    if (stageOptions && effect.variables) {
       effect.variables.player = stageOptions.player;
       effect.variables.score1 = stageOptions.score1;
       effect.variables.score2 = stageOptions.score2;

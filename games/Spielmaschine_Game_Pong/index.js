@@ -104,7 +104,7 @@ Spielmaschine_Game_Pong.prototype.draw = function() {
         anybutton = (global.pixelNode.data.fastGet(["inputs","buttons","btn_3"])
                        && global.pixelNode.data.fastGet(["inputs","buttons","btn_8"]));
       }
-      self.stageScreen("Color", "PongStart", anybutton ? -1 : 0 , "game", false);
+      self.stageScreen("ColouredRain", "PongStart", anybutton ? -1 : 0 , "game", false);
       if (global.config.inputMode == "server" && self.inited) {
         global.pixelNode.gameManager.getEffectByName("PongStart").draw();
       }
@@ -198,8 +198,12 @@ Spielmaschine_Game_Pong.prototype.stageGame = function() {
     }, true);
   }
 
-  // draw foreground
-  self.foregroundEffect.draw();
+// self.foregroundEffect.draw();
+  if (global.config.background) {
+    self.backgroundEffect.draw();
+  } else {
+    self.foregroundEffect.draw();
+  }
 
 }
 
@@ -223,7 +227,7 @@ Spielmaschine_Game_Pong.prototype.stageScreen = function(backgroundFX, foregroun
 
     var stageOptions = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Pong","stageOptions"]);
     var effect = global.pixelNode.gameManager.getEffectByName(foregroundFX);
-    if (stageOptions) {
+    if (stageOptions && effect.variables) {
       effect.variables.player = stageOptions.player;
       effect.variables.score1 = stageOptions.score.player1;
       effect.variables.score2 = stageOptions.score.player2;

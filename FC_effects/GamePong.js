@@ -8,7 +8,14 @@ module.exports = [
 				targets: [
 					"buttons.strips"
 				]
-			}
+			},
+      {
+        name: "background",
+        targets: [
+          "bar.strips"
+        ]
+      }
+
 		]
 	},
 	{

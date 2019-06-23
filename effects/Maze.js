@@ -43,7 +43,7 @@ module.exports = PixelNode_Effect_Maze;
  PixelNode_Effect_Maze.prototype.mazeOffsetX = 0;
  PixelNode_Effect_Maze.prototype.mazeOffsetY = 0;
  PixelNode_Effect_Maze.prototype.maze;
-
+ PixelNode_Effect_Maze.prototype.backgroundFX = null;
 
 
 /* Overridden Methods
@@ -52,14 +52,14 @@ module.exports = PixelNode_Effect_Maze;
 // init effect – override
 PixelNode_Effect_Maze.prototype.init = function() {
 	console.log("Init Effect Maze".grey);
-
+this.backgroundFX = global.pixelNode.gameManager.getEffectByName("RedBlue");
 }
 
 // draw effect on target
 PixelNode_Effect_Maze.prototype.drawTarget = function(target, output) {
 	var self = this;
   var sz = this.sz;
-
+	
   canvas = new PixelNode_Canvas(target);
   if (output == "buttons") {
     canvas.drawMap([
@@ -78,6 +78,11 @@ PixelNode_Effect_Maze.prototype.drawTarget = function(target, output) {
     ], 0 ,0 , [0,0,0]);
 
   } else if (output == "table") {
+		if(!player1 && !player2) {
+			    self.backgroundFX.drawTarget(target, "rainbow");
+			return;
+		}//*/
+		
     var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player1"]);
     var player2 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player2"]);
     var map = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_MazeMap"]);
@@ -91,11 +96,12 @@ PixelNode_Effect_Maze.prototype.drawTarget = function(target, output) {
     if (map) {
       canvas.rectangle(this.mazeOffsetX,this.mazeOffsetY, map.length, map[0].length, [196,196,196])
       canvas.drawMap(map, this.mazeOffsetX,this.mazeOffsetY , [0,0,0]);
-    }
+
+    	canvas.rectangle(this.mazeOffsetX,this.mazeOffsetY+1,1,1,[0,0,0]);
+	    canvas.rectangle(this.mazeOffsetX + map.length-1, this.mazeOffsetY + map[0].length-2,1,1,[0,0,0]);
+		}
 
 
-    canvas.rectangle(this.mazeOffsetX,this.mazeOffsetY+1,1,1,[0,0,0]);
-    canvas.rectangle(this.mazeOffsetX + map.length-1, this.mazeOffsetY + map[0].length-2,1,1,[0,0,0]);
 
     var player1did= [];
     for (var i = 0; i < player1.trace.length; i++) {
@@ -109,5 +115,7 @@ PixelNode_Effect_Maze.prototype.drawTarget = function(target, output) {
     canvas.dot(this.mazeOffsetX + player1.posX, this.mazeOffsetY + player1.posY, player1.color);
     canvas.dot(this.mazeOffsetX + player2.posX, this.mazeOffsetY + player2.posY, player2.color);
 
+  }else if (output == "background") {
+    self.backgroundFX.drawTarget(target, "rainbow");
   }
 }

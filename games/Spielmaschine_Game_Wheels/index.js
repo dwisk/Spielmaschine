@@ -127,7 +127,7 @@ Spielmaschine_Game_Wheels.prototype.draw = function() {
       if (global.config.inputMode == "server" && self.inited) {
         pulled = (buttons.btn_5) && buttons.btn_10;
       }
-      self.stageScreen("Color", "WheelsStart", pulled ? -1 : 0 , "game", false);
+      self.stageScreen("ColouredRain", "WheelsStart", pulled ? -1 : 0 , "game", false);
       if (global.config.inputMode == "server" && self.inited) {
         global.pixelNode.gameManager.getEffectByName("WheelsStart").draw();
       }

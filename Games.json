@@ -1,47 +1,10 @@
 [
 	{
-		"name": "Spielmaschine",
-		"default": true,
-		"title": "Spielmaschine",
-		"allowBrightness": true,
-		"module": "../games/PixelNode_Game_EffectQueue",
-		"inputs": {
-			"color_left": "inputs.rgb.color_left",
-			"color_right": "inputs.rgb.color_right",
-			"touches": "touch.touches"
-		},
-		"afterEffect": "TitleSpielmaschine",
-
-		"queue": [
-			{ "effect": "ColouredRain", "duration": 10000 },
-			{ "effect": "Fire", "duration": 10000 },
-			{ "effect": "Rain", "duration": 10000 },
-			{ "effect": "RedBlue", "duration": 10000 },
-			{ "effect": "Glitter", "duration": 10000 }
-		]
-	},
-	{
-		"name": "Trinktrommel",
-		"title": "Trinktrommel",
-		"module": "./games/Spielmaschine_Game_Wheels",
-		"gameEffect": "Wheels",
-		"allowBrightness": false,
-		"probability": {
-			"B": 8,
-			"D": 4,
-			"S": 3,
-			"W": 1,
-			"N": 10,
-			"H": 4
-    }
-	},
-
-
-	{
 		"name": "Tischtennis",
+		"icon": "entypo/paper-plane",
 		"title": "Tischtennis",
 		"module": "./games/Spielmaschine_Game_Pong",
-		"backgroundEffect": "RedBlue",
+		"backgroundEffect": "Wave",
 		"foregroundEffect": "Pong",
 		"inputs": {
 			"color_left": "inputs.rgb.color_left",
@@ -53,11 +16,45 @@
 		"color_input": true
 	},
 
+	
+				{
+		"name": "Spielmaschine",
+		"icon": "entypo/paper-plane",
+		"default": true,
+		"title": "Spielmaschine",
+		"allowBrightness": true,
+		"module": "./games/Spielmaschine_TitleQueue",
+		"inputs": {
+			"color_left": "inputs.rgb.color_left",
+			"color_right": "inputs.rgb.color_right",
+			"touches": "touch.touches"
+		},
+		"afterEffect": "TitleBurnnight",
+
+		"queue": [
+			{ "effect": "Maze", "duration": 20000 },
+			{ "effect": "RedBlue", "afterEffect": "bmpRadicalInclusion", "duration": 10000 },
+			{ "effect": "Wave", "afterEffect": "bmpGifting", "duration": 10000 },
+			{ "effect": "RainBow", "afterEffect": "bmpDecommodifcation", "duration": 10000 },
+			{ "effect": "Fire", "afterEffect": "bmpRadicalSelfReliance", "duration": 10000 },
+			{ "effect": "ColouredRain", "afterEffect": "bmpRadicalSelfExpression", "duration": 10000 },
+			{ "effect": "RainBow", "afterEffect": "bmpCommunalEffort", "duration": 10000 },
+			{ "effect": "Color", "afterEffect": "bmpCivicResponsibility", "duration": 10000 },
+			{ "effect": "Rain", "afterEffect": "bmpLeaveNoTrace", "duration": 10000 },
+			{ "effect": "RainBow", "afterEffect": "bmpParticipation", "duration": 10000 },
+			{ "effect": "Glitter", "afterEffect": "bmpImmediacy", "duration": 10000 }
+
+
+		]
+	},
+
 	{
 		"name": "BeFree",
+		"icon": "entypo/paper-plane",
 		"title": "BeFree",
 		"module": "./games/Spielmaschine_Game_Maze",
 		"mapEffect": "Maze",
+		"backgroundEffect": "Wall",
 		"foregroundEffect": "Pong",
 		"inputs": {
 			"color_left": "inputs.rgb.color_left",
@@ -68,4 +65,5 @@
 		"touch_input": true,
 		"color_input": true
 	}
+
 ]

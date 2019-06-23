@@ -165,6 +165,10 @@ PixelNode_Effect_Canvas.prototype.drawTarget = function(target, output) {
 
 }
 
+PixelNode_Effect_Canvas.prototype.reset = function () {
+  this.variables = [];
+}
+
 PixelNode_Effect_Canvas.prototype.getValue = function(property) {
   if (typeof property == "function") {
     return property.bind(this)();

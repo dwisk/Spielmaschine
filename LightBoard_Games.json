@@ -1,0 +1,71 @@
+[
+	{
+		"name": "Spielmaschine",
+		"icon": "entypo/paper-plane",
+		"default": true,
+		"title": "Spielmaschine",
+		"allowBrightness": true,
+		"module": "../games/PixelNode_Game_EffectQueue",
+		"inputs": {
+			"color_left": "inputs.rgb.color_left",
+			"color_right": "inputs.rgb.color_right",
+			"touches": "touch.touches"
+		},
+		"afterEffect": "TitleBurnnight",
+
+		"queue": [
+			{ "effect": "ColouredRain", "duration": 60000 },
+			{ "effect": "Fire", "duration": 60000 },
+			{ "effect": "Rain", "duration": 60000 },
+			{ "effect": "RedBlue", "duration": 60000 },
+			{ "effect": "Glitter", "duration": 60000 }
+		]
+	},
+
+	{
+		"name": "Tischtennis",
+		"icon": "entypo/paper-plane",
+		"default": true,
+		"title": "Spielmaschine",
+		"allowBrightness": true,
+		"module": "../games/PixelNode_Game_EffectQueue",
+		"inputs": {
+			"color_left": "inputs.rgb.color_left",
+			"color_right": "inputs.rgb.color_right",
+			"touches": "touch.touches"
+		},
+		"afterEffect": "TitleBurnnight",
+
+		"queue": [
+			{ "effect": "ColouredRain", "duration": 60000 },
+			{ "effect": "Fire", "duration": 60000 },
+			{ "effect": "Rain", "duration": 60000 },
+			{ "effect": "RedBlue", "duration": 60000 },
+			{ "effect": "Glitter", "duration": 60000 }
+		]
+	},
+
+	{
+		"name": "BeFree",
+		"icon": "entypo/paper-plane",
+		"default": true,
+		"title": "Spielmaschine",
+		"allowBrightness": true,
+		"module": "../games/PixelNode_Game_EffectQueue",
+		"inputs": {
+			"color_left": "inputs.rgb.color_left",
+			"color_right": "inputs.rgb.color_right",
+			"touches": "touch.touches"
+		},
+		"afterEffect": "TitleBurnnight",
+
+		"queue": [
+			{ "effect": "ColouredRain", "duration": 60000 },
+			{ "effect": "Fire", "duration": 60000 },
+			{ "effect": "Rain", "duration": 60000 },
+			{ "effect": "RedBlue", "duration": 60000 },
+			{ "effect": "Glitter", "duration": 60000 }
+		]
+	}
+
+]

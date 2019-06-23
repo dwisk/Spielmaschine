@@ -38,6 +38,12 @@ module.exports = PixelNode_Effect_Pong;
  * ==================================================================================================================== */
 
 
+  PixelNode_Effect_Pong.prototype.default_options = {
+  	scale: 5,
+  	speed: 1
+  }
+
+PixelNode_Effect_Pong.prototype.backgroundFX = null;
 
 
 /* Overridden Methods
@@ -46,6 +52,8 @@ module.exports = PixelNode_Effect_Pong;
 // init effect – override
 PixelNode_Effect_Pong.prototype.init = function() {
 	console.log("Init Effect Off".grey);
+  this.backgroundFX = global.pixelNode.gameManager.getEffectByName("RedBlue");
+
 }
 
 PixelNode_Effect_Pong.prototype.pos = 4;
@@ -107,6 +115,8 @@ PixelNode_Effect_Pong.prototype.drawTarget = function(target, output) {
       canvas.rectangle(Math.round(ball.posX)-1, Math.round(ball.posY), 3, 1, ballcolor);
 
 
+    } else if (output == "background") {
+      self.backgroundFX.drawTarget(target, output);
     }
   }
 

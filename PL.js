@@ -21,7 +21,6 @@ pixelnode = new PixelNode({
 	config: {
 		"title": "Spielmaschine Pixelpusher-Display",
 		"inputMode": "client",
-		"background": true,
 
 		"webServer": {
 			"start": false,
@@ -32,17 +31,19 @@ pixelnode = new PixelNode({
 		// DRIVERS ----------------------------------------------------------------------------------------------------
 
 		"pixelDrivers": [
-			{
-				"module": "pixelnode-driver-pixelpusher",
-				"delay": 25,
-				"dimmer": 0.75
+		{
+			"module": "pixelnode-driver-dmx",
+			"ip": "192.168.3.106",
+			//"ip": "192.168.3.20",
+			"delay": 50,
+			"dimmer": 0.25
 			}
+			
 		],
-
 
 		// EFFECTS ----------------------------------------------------------------------------------------------------
 
-		"effects": PixelNode.requireFile("./LightBoard_effects"),
+		"effects": PixelNode.requireFile("./PL_effects"),
 		"after_effects": [
 		],
 
@@ -53,7 +54,8 @@ pixelnode = new PixelNode({
 			{
 				"name": "socketclient",
 				"module": "../inputs/PixelNode_Input_WebSocket_Client.js",
-				"server": "http://192.168.3.35:3001"
+				"server": "http://192.168.5.104:3001"
+				//"server": "http://localhost:3001"
 			}
 			// {
 			// 	"name": "rgb",
@@ -67,7 +69,12 @@ pixelnode = new PixelNode({
     // FONTS ----------------------------------------------------------------------------------------------------
 
 		"fonts": [
-
+			"./fonts/8bitwonder",
+      "./fonts/04b3",
+			"./fonts/commonpixel",
+  		"./fonts/hachicro",
+  		"./fonts/3dventure",
+  		"./fonts/PressStart2P"
 		],
 
 		// GAMES  ----------------------------------------------------------------------------------------------------
@@ -76,14 +83,12 @@ pixelnode = new PixelNode({
 
 	},
 
-	mapping: "LightBoard_mapping.json"
+	mapping: PixelNode.requireFile("PL_mapping.js"),
 });
 
 
-
-
 // override effects
-pixelnode.gameManager.on("drawGame_after", function() {
+/*pixelnode.gameManager.on("drawGame_after", function() {
 
 	if (pixelNode.gameManager.game.options.allowBrightness || false) {
 		pushed = global.pixelNode.data.fastGet(["inputs","buttons"]);
@@ -95,3 +100,5 @@ pixelnode.gameManager.on("drawGame_after", function() {
 	}
 
 });
+
+*/

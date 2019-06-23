@@ -84,6 +84,8 @@ Spielmaschine_Game_Maze.prototype.levels = [
   [9,9],
   [12,9],
   [12,12],
+  [15,12],
+  [15,15],
 /*  [18,15],
   [21,15],
   [24,15],
@@ -155,8 +157,8 @@ Spielmaschine_Game_Maze.prototype.setLevel = function(levelup = false) {
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","player1"], player1);
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","player2"], player2);
     global.pixelNode.data.set(["games","Spielmaschine_Game_Maze","maze"], {
-      offsetX: Math.round(14 - (this.mazeWidth*2-1)/2),
-      offsetY: Math.round(14 - (this.mazeHeight*2-1)/2),
+      offsetX: Math.round(30 - (this.mazeWidth*2-1)/2),
+      offsetY: Math.round(15 - (this.mazeHeight*2-1)/2),
     });
 
     global.pixelNode.data.set(["games","Spielmaschine_Game_MazeMap"], [[]]);

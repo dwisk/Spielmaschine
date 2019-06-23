@@ -59,7 +59,7 @@ this.backgroundFX = global.pixelNode.gameManager.getEffectByName("RedBlue");
 PixelNode_Effect_Maze.prototype.drawTarget = function(target, output) {
 	var self = this;
   var sz = this.sz;
-
+	
   canvas = new PixelNode_Canvas(target);
   if (output == "buttons") {
     canvas.drawMap([
@@ -109,6 +109,11 @@ PixelNode_Effect_Maze.prototype.drawTarget = function(target, output) {
 			}
 
   } else if (output == "table") {
+		if(!player1 && !player2) {
+			    self.backgroundFX.drawTarget(target, "rainbow");
+			return;
+		}//*/
+		
     var player1 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player1"]);
     var player2 = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_Maze","player2"]);
     var map = global.pixelNode.data.fastGet(["games","Spielmaschine_Game_MazeMap"]);
@@ -122,11 +127,12 @@ PixelNode_Effect_Maze.prototype.drawTarget = function(target, output) {
     if (map) {
       canvas.rectangle(this.mazeOffsetX,this.mazeOffsetY, map.length, map[0].length, [196,196,196])
       canvas.drawMap(map, this.mazeOffsetX,this.mazeOffsetY , [0,0,0]);
-    }
+
+    	canvas.rectangle(this.mazeOffsetX,this.mazeOffsetY+1,1,1,[0,0,0]);
+	    canvas.rectangle(this.mazeOffsetX + map.length-1, this.mazeOffsetY + map[0].length-2,1,1,[0,0,0]);
+		}
 
 
-    canvas.rectangle(this.mazeOffsetX,this.mazeOffsetY+1,1,1,[0,0,0]);
-    canvas.rectangle(this.mazeOffsetX + map.length-1, this.mazeOffsetY + map[0].length-2,1,1,[0,0,0]);
 
     var player1did= [];
     for (var i = 0; i < player1.trace.length; i++) {

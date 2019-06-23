@@ -15,6 +15,8 @@
     "pixelnode-input-mpr121": "^0.2.1",
     "pixelnode": "dwisk/PixelNode#develop",
     "pixelnode-driver-dmx": "^0.0.2",
+    "buffertools": "^2.1.6",
+    "pixelnode-driver-fadecandy": "^0.0.4",
     "pixelnode-driver-pixelpusher": "dwisk/PixelNode_Driver_PixelPusher#develop",
     "pngjs": "^3.4.0",
     "wpi-gpio": "^1.1.0"

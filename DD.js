@@ -134,16 +134,18 @@ new PixelNode({
 	mapping: "DD_mapping.json"
 });
 
-/*
+
 global.pixelNode.data.on("changed_inputs_touch1_touches_11", function(paths, value) {
+		if (value == true) {
+			global.pixelNode.gameManager.prevGame();
+		}
+	});
+
+	global.pixelNode.data.on("changed_inputs_touch1_touches_10", function(paths, value) {
 		if (value == true) {
 			global.pixelNode.gameManager.nextGame();
 		}
 	});
-
-	global.pixelNode.data.on("changed_inputs_touch2_touches_11", function(paths, value) {
-		if (value == true) {
-			global.pixelNode.gameManager.prevGame();
-		}
-	});*/
+	
+	
 	

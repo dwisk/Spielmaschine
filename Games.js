@@ -9,8 +9,8 @@ module.exports = [
 		"foregroundEffect": "Pong",
 		
 		"startButtons": [
-			["inputs","touch1","touches", 4],
-			["inputs","touch1","touches", 1]			
+			["inputs","touch1","touches", 2],
+			["inputs","touch2","touches", 1]			
 		],
 		
 		player1:{ 
@@ -45,7 +45,49 @@ module.exports = [
 		"color_input": true
 	},
 
-	
+
+	{
+		"name": "BeFree",
+		"icon": "entypo/paper-plane",
+		"title": "BeFree",
+		"module": "./games/Spielmaschine_Game_Maze",
+		"mapEffect": "Maze",
+		"backgroundEffect": "RedBlue",
+		"foregroundEffect": "Pong",
+
+		"startButtons": [
+			["inputs","touch1","touches", 2],
+			["inputs","touch2","touches", 1]			
+		],
+		
+		player1:{ 
+			inputs: {
+				left: ["inputs","touch1","touches",3],
+				right: ["inputs","touch1","touches",7],
+				up: ["inputs","touch1","touches",4],
+				down: ["inputs","touch1","touches", 1]
+			}
+		},
+		player2: {
+			inputs: {
+				right: ["inputs","touch2","touches",6],
+				left: ["inputs","touch2","touches",2],
+				up: ["inputs","touch2","touches",4],
+				down: ["inputs","touch2","touches", 0]
+			}
+		},
+		"inputs": {
+			"color_left": "inputs.rgb.color_left",
+			"color_right": "inputs.rgb.color_right",
+			"touches": "touch.touches"
+		},
+
+		"speed": 0.01,
+		"touch_input": true,
+		"color_input": true
+	},
+
+/*
 				{
 		"name": "Spielmaschine",
 		"icon": "entypo/paper-plane",
@@ -76,49 +118,11 @@ module.exports = [
 
 		]
 	},
-
-	{
-		"name": "BeFree",
-		"icon": "entypo/paper-plane",
-		"title": "BeFree",
-		"module": "./games/Spielmaschine_Game_Maze",
-		"mapEffect": "Maze",
-		"backgroundEffect": "RedBlue",
-		"foregroundEffect": "Pong",
-
-		"startButtons": [
-			["inputs","touch1","touches", 4],
-			["inputs","touch1","touches", 1]			
-		],
-		
-		player1:{ 
-			inputs: {
-				left: ["inputs","touch1","touches",3],
-				right: ["inputs","touch1","touches",7],
-				up: ["inputs","touch1","touches",4],
-				down: ["inputs","touch1","touches", 1]
-			}
-		},
-		player2: {
-			inputs: {
-				right: ["inputs","touch2","touches",6],
-				left: ["inputs","touch2","touches",2],
-				up: ["inputs","touch2","touches",4],
-				down: ["inputs","touch2","touches", 0]
-			}
-		},
-		"inputs": {
-			"color_left": "inputs.rgb.color_left",
-			"color_right": "inputs.rgb.color_right",
-			"touches": "touch.touches"
-		},
-
-		"speed": 0.01,
-		"touch_input": true,
-		"color_input": true
-	},
+	
+	//*/
 
 
+/*
 {
 		"name": "Spielmaschine",
 		"default": true,
@@ -139,6 +143,6 @@ module.exports = [
 			{ "effect": "RedBlue", "duration": 10000 },
 			{ "effect": "Glitter", "duration": 10000 }
 		]
-	}
+	}*/
 
 ]

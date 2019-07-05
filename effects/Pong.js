@@ -194,7 +194,6 @@ PixelNode_Effect_Pong.prototype.drawTarget = function(target, output) {
       canvas.dot(1, 3, [0, 0, 255 * player2.shields/3]);
 			*/
 
-		}
     } else if (output == "background") {
       self.backgroundFX.drawTarget(target, output);
     }
